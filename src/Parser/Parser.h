@@ -18,6 +18,7 @@
 #include "../Routines/IntensityOutputRoutineTM.h"
 #include "../Routines/EzOutputRoutineTM.h"
 #include "../Sources/HarmonicSource.h"
+#include "../Sources/RickerSource.h"
 #include "../BoundaryCond/ABCTM.h"
 #include "../BoundaryCond/TFSFCondTM.h"
 #include "../BoundaryCond/TFSFCondTE.h"
@@ -44,13 +45,15 @@ private:
 	GridTE* gridTE;
 	UpdaterTM  updaterTM;
 	std::vector<HarmonicSource*> hSources;
+	std::vector<RickerSource*> rSources;
 	std::vector<EzOutputRoutineTM*> EzOut;
 	std::vector<HzOutputRoutineTM*> HzOut;
 	std::vector<ABCTM*> ABCTMs;
 	std::vector<ABCTE*> ABCTEs;
 	TFSFCondTM* tfsfTM;
 	TFSFCondTE* tfsfTE;
-	HarmonicSource* tfsfSource;
+	HarmonicSource* hTFSFSource;
+	RickerSource* rTFSFSource;
 	int num;
 
 	void runTE();

@@ -24,6 +24,9 @@ Parser::~Parser() {
 	for (auto source: hSources){
 		delete source;
 	}
+	for (auto source: rSources){
+		delete source;
+	}
 	for (auto ezout: EzOut){
 		delete ezout;
 	}
@@ -177,6 +180,19 @@ inline void Parser::addSourceTM() {
 		HarmonicSource* hSource = new HarmonicSource(amp, freq, posX, posY);
 		hSources.push_back(hSource);
 	}
+	if (sourceType == "Ricker") {
+		float amp = 0;
+		fileStream >> amp;
+		float freq = 0;
+		fileStream >> freq;
+		freq = 4.44063/freq;
+		int M = 0;
+		fileStream >> M;
+		int posX(0), posY(0);
+		fileStream >> posX >> posY;
+		RickerSource* rSource = new RickerSource(amp, freq, M, posX, posY);
+		rSources.push_back(rSource);
+	}
 }
 
 inline void Parser::addSourceTE() {
@@ -192,6 +208,19 @@ inline void Parser::addSourceTE() {
 		fileStream >> posX >> posY;
 		HarmonicSource* hSource = new HarmonicSource(amp, freq, posX, posY);
 		hSources.push_back(hSource);
+	}
+	if (sourceType == "Ricker") {
+		float amp = 0;
+		fileStream >> amp;
+		float freq = 0;
+		fileStream >> freq;
+		freq = 4.44063/freq;
+		int M = 0;
+		fileStream >> M;
+		int posX(0), posY(0);
+		fileStream >> posX >> posY;
+		RickerSource* rSource = new RickerSource(amp, freq, M, posX, posY);
+		rSources.push_back(rSource);
 	}
 }
 
@@ -214,8 +243,19 @@ inline void Parser::addBoundaryCondTM() {
 				float freq = 0;
 				fileStream >> freq;
 				freq = 4.44063/freq;
-				tfsfSource = new HarmonicSource(amp, freq, 0, 0);
-				tfsfTM->addSource(tfsfSource);
+				hTFSFSource = new HarmonicSource(amp, freq, 0, 0);
+				tfsfTM->addSource(hTFSFSource);
+		}
+		if (sourceType == "Ricker") {
+			float amp = 0;
+			fileStream >> amp;
+			float freq = 0;
+			fileStream >> freq;
+			freq = 4.44063/freq;
+			int M = 0;
+			fileStream >> M;
+			rTFSFSource = new RickerSource(amp, freq, M, 0, 0);
+			tfsfTM->addSource(rTFSFSource);
 		}
 	}
 }
@@ -239,9 +279,20 @@ inline void Parser::addBoundaryCondTE() {
 				float freq = 0;
 				fileStream >> freq;
 				freq = 4.44063/freq;
-				tfsfSource = new HarmonicSource(amp, freq, 0, 0);
-				tfsfTE->addSource(tfsfSource);
+				hTFSFSource = new HarmonicSource(amp, freq, 0, 0);
+				tfsfTE->addSource(hTFSFSource);
 		}
+		if (sourceType == "Ricker") {
+				float amp = 0;
+				fileStream >> amp;
+				float freq = 0;
+				fileStream >> freq;
+				freq = 4.44063/freq;
+				int M = 0;
+				fileStream >> M;
+				rTFSFSource = new RickerSource(amp, freq, M, 0, 0);
+				tfsfTE->addSource(rTFSFSource);
+			}
 	}
 }
 

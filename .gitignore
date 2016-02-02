@@ -7,4 +7,7 @@
 *.o
 *.txt
 /Debug/*
+/Release/*
 /.settings/*
+.project
+/Release/

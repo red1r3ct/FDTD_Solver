@@ -10,4 +10,5 @@
 /Release/*
 /.settings/*
 .project
+.cproject
 /Release/

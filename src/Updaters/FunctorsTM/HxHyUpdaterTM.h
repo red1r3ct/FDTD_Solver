@@ -1,0 +1,44 @@
+/*
+ * HxHyUpdaterTM.h
+ *
+ *  Created on: 20 янв. 2016 г.
+ *      Author: aleksandr
+ */
+
+#ifndef HXHYUPDATERTM_H_
+#define HXHYUPDATERTM_H_
+
+#include <thrust/device_vector.h>
+#include <thrust/functional.h>
+
+typedef thrust::device_ptr<float> d_ptr;
+
+class HxHyUpdaterTM {
+public:
+	__host__ __device__
+	HxHyUpdaterTM(d_ptr _Ez, d_ptr _Hx, d_ptr _Hy, d_ptr _epsilon, int _sizeX, int _sizeY, float _S ) : Ez(_Ez), Hx(_Hx), Hy(_Hy),
+			epsilon(_epsilon), sizeX(_sizeX), sizeY(_sizeY), S(_S) {};
+	__host__ __device__
+	~HxHyUpdaterTM() {};
+
+	__host__ __device__
+	HxHyUpdaterTM(): sizeX(0), sizeY(0), S(0) {}
+
+	void setParams(d_ptr _Ez, d_ptr _Hx, d_ptr _Hy, d_ptr _epsilon, int _sizeX, int _sizeY, float _S ) {
+		Ez=_Ez;
+		Hx=_Hx;
+		Hy=_Hy;
+		epsilon=_epsilon;
+		sizeX=_sizeX;
+		sizeY=_sizeY;
+		S=_S;
+	}
+
+	__host__ __device__
+	void operator() (const int indx);
+
+	d_ptr Ez, Hx, Hy, epsilon;
+	int sizeX, sizeY;
+	float S;
+};
+#endif /* HXHYUPDATERTM_H_ */

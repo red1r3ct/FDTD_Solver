@@ -55,10 +55,10 @@ void UpdaterTE::updateFields() {
 	for (auto boundaryCond: boundaryConds) {
 		boundaryCond->apply();
 	}
-	updateH();
 	if (tfsfCond != nullptr) {
 		updateTFSF();
 	}
+	updateH();
 }
 
 void UpdaterTE::updateSources() {

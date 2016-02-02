@@ -23,6 +23,6 @@ void EyUpdater::operator() (const int indx) {
 	float Ceyh = S*377.0;
 	int m = firstX;
 	Ey(m, indx) = Ey(m, indx) + Ceyh * Hz1D[m-1];
-	m = lastX+1;
+	m = lastX;
 	Ey(m, indx) = Ey(m, indx) - Ceyh * Hz1D[m];
 }

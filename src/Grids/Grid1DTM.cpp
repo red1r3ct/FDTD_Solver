@@ -22,7 +22,7 @@ Grid1DTM::Grid1DTM(std::size_t _size, float _S, std::size_t _nLoss, float _maxLo
 			Chyh[i] = 1.0;
 			Chye[i] = S/imp0;
 		} else {
-			int depthInLayer = i - (size - 1 - nLoss) + 0.5;
+			float depthInLayer = i - (size - 1 - nLoss) + 0.5;
 			float lossFactor = maxLoss* pow((float)(depthInLayer) / (float)(nLoss), 2);
 			Ceze[i] = (1.0 - lossFactor) / (1.0 + lossFactor);
 			Cezh[i] = S * imp0 / (1.0 + lossFactor);

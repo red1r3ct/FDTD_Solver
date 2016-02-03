@@ -22,7 +22,7 @@ Grid1DTE::Grid1DTE(std::size_t _size, float _S, std::size_t _nLoss, float _maxLo
 			Chzh[i] = 1.0;
 			Chze[i] = S/imp0;
 		} else {
-			int depthInLayer = i - (size - 1 - nLoss) + 0.5;
+			float depthInLayer = depthInLayer + 0.5;
 			float lossFactor = maxLoss* pow((float)(depthInLayer) / (float)(nLoss), 2);
 			Ceye[i] = (1.0 - lossFactor) / (1.0 + lossFactor);
 			Ceyh[i] = S * imp0 / (1.0 + lossFactor);

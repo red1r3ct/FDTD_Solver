@@ -51,14 +51,11 @@ void UpdaterTE::addSource(Source* source) {
 }
 
 void UpdaterTE::updateFields() {
-	updateE();
-	for (auto boundaryCond: boundaryConds) {
-		boundaryCond->apply();
-	}
+	updateH();
 	if (tfsfCond != nullptr) {
 		updateTFSF();
 	}
-	updateH();
+	updateE();
 }
 
 void UpdaterTE::updateSources() {
@@ -80,6 +77,9 @@ void UpdaterTE::updateRoutines() {
 }
 
 void UpdaterTE::updateBoundaryCond() {
+	for (auto boundaryCond: boundaryConds) {
+		boundaryCond->apply();
+	}
 }
 
 void UpdaterTE::addTFSF(TFSFCondTE* _tfsfCond) {

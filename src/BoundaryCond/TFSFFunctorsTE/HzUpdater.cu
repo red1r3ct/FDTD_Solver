@@ -22,7 +22,7 @@ void HzUpdater::operator() (const int indx) {
 	Hz(mm, nn) -= Chze(mm, nn) * Ey1G(g1, mm);*/
 	float Chze = S/377.0;
 	int m = firstX-1;
-	Hz(m, indx) = Hz(m, indx) + Chze * Ey1D[m];
+	Hz(m, indx) = Hz(m, indx) + Chze * Ey1D[m+1];
 	m = lastX;
-	Hz(m, indx) = Hz(m, indx) - Chze * Ey1D[m+1];
+	Hz(m, indx) = Hz(m, indx) - Chze * Ey1D[m];
 }

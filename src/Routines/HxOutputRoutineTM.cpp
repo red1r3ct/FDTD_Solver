@@ -1,35 +1,35 @@
 /*
- * HzOutputRoutineTE.cpp
+ * HxOutputRoutineTM.cpp
  *
- *  Created on: 29 янв. 2016 г.
+ *  Created on: 03 февр. 2016 г.
  *      Author: aleksandr
  */
 
-#include "HzOutputRoutineTE.h"
+#include "HxOutputRoutineTM.h"
 
 #include <fstream>
 #include <cmath>
 
-void HzOutputRoutineTM::print() {
+void HxOutputRoutineTM::print() {
 	std::ofstream file;
 	std::string currentFileName = fileName+"_"+std::to_string(currentTime) + ".txt";
 	file.open(currentFileName, std::ofstream::trunc);
 	if (!file.is_open()) {
 		return;
 	}
-	grid->Hz.GPUtoCPU();
-	float* Hz = grid->Hz.getHostPtr();
-	int sizeHz = grid->Hz.getSize();
-	#define Hz(M, N) Hz[(M) * (grid->sizeY-1) + (N)]
-	for(int i = 0; i < (sizeX-1)*(sizeY-1); i++) {
+	grid->Hx.GPUtoCPU();
+	float* Hx = grid->Hx.getHostPtr();
+	int sizeHx = grid->Hx.getSize();
+	#define Hx(M, N) Hx[(M) * (grid->sizeY-1) + (N)]
+	for(int i = 0; i < sizeX*(sizeY-1); i++) {
 		int xCoord = firstX+resolutionX*(i/(sizeY-1));
 		int yCoord = firstY+resolutionY*(i%(sizeY-1));
-		file << xCoord << " " << yCoord << " " << Hz(xCoord, yCoord) << std::endl;
+		file << xCoord << " " << yCoord << " " << Hx(xCoord, yCoord) << std::endl;
 	}
 	file.close();
 }
 
-void HzOutputRoutineTM::compute(int time) {
+void HxOutputRoutineTM::compute(int time) {
 	if (time > startTime && time < endTime) {
 		if ((time-startTime)%period == 0) {
 			print();

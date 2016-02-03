@@ -24,7 +24,7 @@ void EzOutputRoutineTM::print() {
 	for(int i = 0; i < sizeX*sizeY; i++) {
 		int xCoord = firstX+resolutionX*(i/sizeY);
 		int yCoord = firstY+resolutionY*(i%sizeY);
-		file << xCoord << " " << yCoord << " " << Ez(xCoord, yCoord)/period << std::endl;
+		file << xCoord << " " << yCoord << " " << Ez(xCoord, yCoord) << std::endl;
 	}
 	file.close();
 }

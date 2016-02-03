@@ -36,6 +36,9 @@ Parser::~Parser() {
 	for (auto exout: ExOut){
 		delete exout;
 	}
+	for (auto eyout: EyOut){
+		delete eyout;
+	}
 	for (auto hxout: HxOut){
 		delete hxout;
 	}
@@ -146,6 +149,9 @@ void Parser::runTE() {
 	}
 	for (auto exout: ExOut){
 		updaterTE.addRoutine(exout);
+	}
+	for (auto eyout: EyOut){
+		updaterTE.addRoutine(eyout);
 	}
 	for (auto abc: ABCTEs){
 		updaterTE.addBoundaryCond(abc);
@@ -371,6 +377,16 @@ inline void Parser::addRoutineTE() {
 															startTime, endTime,
 															period);
 		ExOut.push_back(routine);
+	}
+	if (routineType == "Ey") {
+		std::string fileName;
+		int firstX, lastX, stepX, firstY, lastY, stepY, startTime, endTime, period;
+		fileStream >> fileName >> firstX >> lastX >> stepX >> firstY >> lastY >> stepY >> startTime >> endTime >> period;
+		EyOutputRoutineTE* routine = new EyOutputRoutineTE(fileName, gridTE, firstX, lastX,
+															stepX, firstY, lastY, stepY,
+															startTime, endTime,
+															period);
+		EyOut.push_back(routine);
 	}
 }
 

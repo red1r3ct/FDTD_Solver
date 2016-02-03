@@ -27,6 +27,7 @@
 #include "../Grids/GridTE.h"
 #include "../Routines/HzOutputRoutineTE.h"
 #include "../Routines/ExOutputRoutineTE.h"
+#include "../Routines/EyOutputRoutineTE.h"
 #include "../BoundaryCond/ABCTE.h"
 
 /*
@@ -54,6 +55,7 @@ private:
 	std::vector<HyOutputRoutineTM*> HyOut;
 	std::vector<HzOutputRoutineTE*> HzOut;
 	std::vector<ExOutputRoutineTE*> ExOut;
+	std::vector<EyOutputRoutineTE*> EyOut;
 	std::vector<ABCTM*> ABCTMs;
 	std::vector<ABCTE*> ABCTEs;
 	TFSFCondTM* tfsfTM;

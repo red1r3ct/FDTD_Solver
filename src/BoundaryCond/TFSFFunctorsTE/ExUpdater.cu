@@ -23,7 +23,7 @@ void ExUpdater::operator() (const int indx) {
 	float Cexh = S*377.0;
 	int n = firstY;
 	Ex(indx, n) = Ex(indx, n) - Cexh * Hz1D[indx];
-	n = lastY+1;
+	n = lastY;
 	Ex(indx, n) = Ex(indx, n) + Cexh * Hz1D[indx];
 }
 

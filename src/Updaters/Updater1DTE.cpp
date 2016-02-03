@@ -29,10 +29,10 @@ void Updater1DTE::addGrid(Grid1DTE* _grid) {
 }
 
 void Updater1DTE::updateFields() {
-	updateEy();
 	updateHz();
+	updateEy();
 	int xCoord = source->getPositionX();
-	auto dptr = &(grid->Hz.getDevicePtr())[xCoord];
+	auto dptr = &(grid->Ey.getDevicePtr())[xCoord];
 	source->updateField(dptr, grid->time);
 	(grid->time)++;
 }

@@ -10,7 +10,7 @@
 #include <fstream>
 #include <cmath>
 
-void HzOutputRoutineTM::print() {
+void HzOutputRoutineTE::print() {
 	std::ofstream file;
 	std::string currentFileName = fileName+"_"+std::to_string(currentTime) + ".txt";
 	file.open(currentFileName, std::ofstream::trunc);
@@ -29,7 +29,7 @@ void HzOutputRoutineTM::print() {
 	file.close();
 }
 
-void HzOutputRoutineTM::compute(int time) {
+void HzOutputRoutineTE::compute(int time) {
 	if (time > startTime && time < endTime) {
 		if ((time-startTime)%period == 0) {
 			print();

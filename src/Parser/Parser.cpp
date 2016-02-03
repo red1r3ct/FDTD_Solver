@@ -33,6 +33,9 @@ Parser::~Parser() {
 	for (auto hzout: HzOut){
 		delete hzout;
 	}
+	for (auto exout: ExOut){
+		delete exout;
+	}
 	for (auto hxout: HxOut){
 		delete hxout;
 	}
@@ -140,6 +143,9 @@ void Parser::runTE() {
 	}
 	for (auto hzout: HzOut){
 		updaterTE.addRoutine(hzout);
+	}
+	for (auto exout: ExOut){
+		updaterTE.addRoutine(exout);
 	}
 	for (auto abc: ABCTEs){
 		updaterTE.addBoundaryCond(abc);
@@ -350,11 +356,21 @@ inline void Parser::addRoutineTE() {
 		std::string fileName;
 		int firstX, lastX, stepX, firstY, lastY, stepY, startTime, endTime, period;
 		fileStream >> fileName >> firstX >> lastX >> stepX >> firstY >> lastY >> stepY >> startTime >> endTime >> period;
-		HzOutputRoutineTM* routine = new HzOutputRoutineTM(fileName, gridTE, firstX, lastX,
+		HzOutputRoutineTE* routine = new HzOutputRoutineTE(fileName, gridTE, firstX, lastX,
 															stepX, firstY, lastY, stepY,
 															startTime, endTime,
 															period);
 		HzOut.push_back(routine);
+	}
+	if (routineType == "Ex") {
+		std::string fileName;
+		int firstX, lastX, stepX, firstY, lastY, stepY, startTime, endTime, period;
+		fileStream >> fileName >> firstX >> lastX >> stepX >> firstY >> lastY >> stepY >> startTime >> endTime >> period;
+		ExOutputRoutineTE* routine = new ExOutputRoutineTE(fileName, gridTE, firstX, lastX,
+															stepX, firstY, lastY, stepY,
+															startTime, endTime,
+															period);
+		ExOut.push_back(routine);
 	}
 }
 

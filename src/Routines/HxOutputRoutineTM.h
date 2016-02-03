@@ -1,30 +1,30 @@
 /*
- * HzOutputRoutineTE.h
+ * HxOuyputRoutineTM.h
  *
- *  Created on: 29 янв. 2016 г.
+ *  Created on: 03 февр. 2016 г.
  *      Author: aleksandr
  */
 
-#ifndef HZOUTPUTROUTINETE_H_
-#define HZOUTPUTROUTINETE_H_
+#ifndef HXOUTPUTROUTINETM_H_
+#define HXOUTPUTROUTINETM_H_
 
 #include <vector>
 #include <string>
 #include <iostream>
-#include "../Grids/GridTE.h"
+#include "../Grids/GridTM.h"
 #include "Routine.h"
 
 /*
- * Класс выводящий данные о поле Hz в файл.
+ * Класс выводящий данные о поле Hx в файл.
  * Внимание!! Совершает копирование с GPU на CPU
  */
 
-class HzOutputRoutineTE: public Routine {
+class HxOutputRoutineTM: public Routine {
 public:
-	HzOutputRoutineTE(std::string _fileName, GridTE* _grid,
-					  int _firstX, int _lastX, int _resolutionX,
-				   	  int _firstY, int _lastY, int _resolutionY,
-					  int _startTime, int _endTime, int _period) :
+	HxOutputRoutineTM(std::string _fileName, GridTM* _grid,
+							 int _firstX, int _lastX, int _resolutionX,
+							 int _firstY, int _lastY, int _resolutionY,
+							 int _startTime, int _endTime, int _period) :
 								 fileName(_fileName), grid(_grid),
 								 firstX(_firstX), lastX(_lastX), resolutionX(_resolutionX),
 								 firstY(_firstY), lastY(_lastY), resolutionY(_resolutionY),
@@ -32,12 +32,12 @@ public:
 								 currentTime(0){
 		sizeX=(lastX-firstX)/resolutionX;
 		sizeY=(lastY-firstY)/resolutionY;
-		std::cout << "Hz output to files "<< fileName <<"_*.txt : \n";
+		std::cout << "Hx output to files "<< fileName <<"_*.txt : \n";
 		std::cout << "\t In region: X(" << firstX << ", " << lastX << ") each " << resolutionX << "px ";
 		std::cout << " Y(" << firstY << ", " << lastY << ") each " << resolutionY << "px \n";
 		std::cout << "\t Time: start=" << startTime << ", end=" << endTime << " each " << period << "steps \n";
 	};
-	~HzOutputRoutineTE() {};
+	~HxOutputRoutineTM() {};
 
 	void compute(int time);
 private:
@@ -47,6 +47,7 @@ private:
 
 	int firstX, firstY, lastX, lastY, resolutionX, resolutionY, startTime, endTime, period;
 	std::string fileName;
-	GridTE* grid;
+	GridTM* grid;
 };
-#endif /* HZOUTPUTROUTINETE_H_ */
+
+#endif /* HXOUTPUTROUTINETM_H_ */

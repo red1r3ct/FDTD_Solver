@@ -1,35 +1,35 @@
 /*
- * EzOutputRoutineTM.cpp
+ * HyOutputRoutineTM.cpp
  *
- *  Created on: 21 янв. 2016 г.
+ *  Created on: 03 февр. 2016 г.
  *      Author: aleksandr
  */
 
-#include "EzOutputRoutineTM.h"
+#include "HyOutputRoutineTM.h"
 
 #include <fstream>
 #include <cmath>
 
-void EzOutputRoutineTM::print() {
+void HyOutputRoutineTM::print() {
 	std::ofstream file;
 	std::string currentFileName = fileName+"_"+std::to_string(currentTime) + ".txt";
 	file.open(currentFileName, std::ofstream::trunc);
 	if (!file.is_open()) {
 		return;
 	}
-	grid->Ez.GPUtoCPU();
-	float* Ez = grid->Ez.getHostPtr();
-	int sizeEz = grid->Ez.getSize();
-	#define Ez(M, N) Ez[(M) * (grid->sizeY) + (N)]
+	grid->Hy.GPUtoCPU();
+	float* Hy = grid->Hy.getHostPtr();
+	int sizeHy = grid->Hy.getSize();
+	#define Hy(M, N) Hy[(M) * (grid->sizeY) + (N)]
 	for(int i = 0; i < sizeX*sizeY; i++) {
 		int xCoord = firstX+resolutionX*(i/sizeY);
 		int yCoord = firstY+resolutionY*(i%sizeY);
-		file << xCoord << " " << yCoord << " " << Ez(xCoord, yCoord) << std::endl;
+		file << xCoord << " " << yCoord << " " << Hy(xCoord, yCoord) << std::endl;
 	}
 	file.close();
 }
 
-void EzOutputRoutineTM::compute(int time) {
+void HyOutputRoutineTM::compute(int time) {
 	if (time > startTime && time < endTime) {
 		if ((time-startTime)%period == 0) {
 			print();

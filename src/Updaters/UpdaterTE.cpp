@@ -63,7 +63,7 @@ void UpdaterTE::updateSources() {
 		int xCoord = source->getPositionX();
 		int yCoord = source->getPositionY();
 		int linearIndex = xCoord * (grid->sizeY-1) + yCoord;
-		auto dptr = &(grid->Hz.getDevicePtr())[linearIndex];
+		auto dptr = &(grid->Ey.getDevicePtr())[linearIndex];
 		source->updateField(dptr, grid->time);
 	}
 }

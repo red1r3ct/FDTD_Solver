@@ -18,6 +18,7 @@
 #include "../Routines/IntensityOutputRoutineTM.h"
 #include "../Routines/EzOutputRoutineTM.h"
 #include "../Routines/HxOutputRoutineTM.h"
+#include "../Routines/HyOutputRoutineTM.h"
 #include "../Sources/HarmonicSource.h"
 #include "../Sources/RickerSource.h"
 #include "../BoundaryCond/ABCTM.h"
@@ -49,6 +50,7 @@ private:
 	std::vector<RickerSource*> rSources;
 	std::vector<EzOutputRoutineTM*> EzOut;
 	std::vector<HxOutputRoutineTM*> HxOut;
+	std::vector<HyOutputRoutineTM*> HyOut;
 	std::vector<HzOutputRoutineTM*> HzOut;
 	std::vector<ABCTM*> ABCTMs;
 	std::vector<ABCTE*> ABCTEs;

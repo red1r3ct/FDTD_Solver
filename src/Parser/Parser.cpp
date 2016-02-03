@@ -36,6 +36,9 @@ Parser::~Parser() {
 	for (auto hxout: HxOut){
 		delete hxout;
 	}
+	for (auto hyout: HyOut){
+		delete hyout;
+	}
 	for (auto abc: ABCTMs){
 		delete abc;
 	}
@@ -97,6 +100,9 @@ void Parser::runTM() {
 	}
 	for (auto hxout: HxOut){
 		updaterTM.addRoutine(hxout);
+	}
+	for (auto hyout: HyOut){
+		updaterTM.addRoutine(hyout);
 	}
 	for (auto abc: ABCTMs){
 		updaterTM.addBoundaryCond(abc);
@@ -324,6 +330,16 @@ inline void Parser::addRoutineTM() {
 															startTime, endTime,
 															period);
 		HxOut.push_back(routine);
+	}
+	if (routineType == "Hy") {
+		std::string fileName;
+		int firstX, lastX, stepX, firstY, lastY, stepY, startTime, endTime, period;
+		fileStream >> fileName >> firstX >> lastX >> stepX >> firstY >> lastY >> stepY >> startTime >> endTime >> period;
+		HyOutputRoutineTM* routine = new HyOutputRoutineTM(fileName, gridTM, firstX, lastX,
+															stepX, firstY, lastY, stepY,
+															startTime, endTime,
+															period);
+		HyOut.push_back(routine);
 	}
 }
 

@@ -24,6 +24,7 @@ void UpdaterTM::addGrid(GridTM* _grid) {
 			   	   	   	grid->Hx.getDevicePtr(),
 			   	   	   	grid->Hy.getDevicePtr(),
 			   	   	   	grid->epsilon.getDevicePtr(),
+			   	   	   	grid->sigma.getDevicePtr(),
 			   	   	   	grid->sizeX,
 			   	   	   	grid->sizeY,
 			   	   	   	1/sqrt(2));

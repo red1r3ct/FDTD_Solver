@@ -26,11 +26,13 @@ public:
 
 	void readEpsilon(const std::string& fileName);
 
+	void readSigma(const std::string& fileName);
+
 	// Геометрические размеры
 	std::size_t sizeX, sizeY;
 	float S;
 	// Компоненты поля
-	vector Hx, Hy, Ez, epsilon;
+	vector Hx, Hy, Ez, epsilon, sigma;
 	// Время
 	std::size_t time;
 };

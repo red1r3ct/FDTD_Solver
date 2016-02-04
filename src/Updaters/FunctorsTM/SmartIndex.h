@@ -12,6 +12,7 @@
 #define Hy(M, N) Hy[(M) * (sizeY) + (N)]
 #define Ez(M, N) Ez[(M) * (sizeY) + (N)]
 #define epsilon(M, N) epsilon[(M) * (sizeY) + (N)]
+#define sigma(M, N) sigma[(M) * (sizeY) + (N)]
 
 
 #endif /* SMARTINDEX_H_ */

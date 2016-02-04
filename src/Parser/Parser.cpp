@@ -85,6 +85,9 @@ void Parser::runTM() {
 		if (command == "Epsilon:") {
 			readEpsilonTM();
 		}
+		if (command == "Sigma:") {
+			readSigmaTM();
+		}
 		if (command == "Source:") {
 			addSourceTM();
 		}
@@ -166,6 +169,12 @@ void Parser::readEpsilonTM() {
 	std::string epsilonFileName = "";
 	fileStream >> epsilonFileName;
 	gridTM->readEpsilon(epsilonFileName);
+}
+
+void Parser::readSigmaTM() {
+	std::string sigmaFileName = "";
+	fileStream >> sigmaFileName;
+	gridTM->readSigma(sigmaFileName);
 }
 
 void Parser::readEpsilonTE() {

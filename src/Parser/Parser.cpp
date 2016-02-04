@@ -48,6 +48,9 @@ Parser::~Parser() {
 	for (auto abc: ABCTMs){
 		delete abc;
 	}
+	for (auto periodic: periodics){
+		delete periodic;
+	}
 	for (auto abc: ABCTEs){
 		delete abc;
 	}
@@ -115,6 +118,9 @@ void Parser::runTM() {
 	}
 	for (auto abc: ABCTMs){
 		updaterTM.addBoundaryCond(abc);
+	}
+	for (auto periodic: periodics){
+		updaterTM.addBoundaryCond(periodic);
 	}
 	if (tfsfTM != nullptr) {
 		updaterTM.addTFSF(tfsfTM);
@@ -263,6 +269,10 @@ inline void Parser::addBoundaryCondTM() {
 	if (condType == "ABC") {
 		ABCTM* abc = new ABCTM(gridTM);
 		ABCTMs.push_back(abc);
+	}
+	if (condType == "Periodic") {
+		PeriodicCondTM* periodic = new PeriodicCondTM(gridTM);
+		periodics.push_back(periodic);
 	}
 	if (condType == "TFSF") {
 		int firstX, lastX, firstY, lastY;

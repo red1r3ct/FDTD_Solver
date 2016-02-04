@@ -24,6 +24,7 @@
 #include "../BoundaryCond/ABCTM.h"
 #include "../BoundaryCond/TFSFCondTM.h"
 #include "../BoundaryCond/TFSFCondTE.h"
+#include "../BoundaryCond/PeriodicCondTM.h"
 #include "../Grids/GridTE.h"
 #include "../Routines/HzOutputRoutineTE.h"
 #include "../Routines/ExOutputRoutineTE.h"
@@ -58,6 +59,7 @@ private:
 	std::vector<EyOutputRoutineTE*> EyOut;
 	std::vector<ABCTM*> ABCTMs;
 	std::vector<ABCTE*> ABCTEs;
+	std::vector<PeriodicCondTM*> periodics;
 	TFSFCondTM* tfsfTM;
 	TFSFCondTE* tfsfTE;
 	HarmonicSource* hTFSFSource;

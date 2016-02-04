@@ -33,8 +33,10 @@ void EzUpdaterTM::operator() (const int indx) {
 	// sizeY - размер полноценнго массива
 	int m = indx/(sizeY);
 	int n = indx%(sizeY);
-	float Cezh = S * 377.0;
+	float loss = sigma(m, n)/(2*epsilon(m, n));
+	float Cezh = S * 377.0 / epsilon(m,n) / (1+loss);
+	float Ceze = (1-loss)/(1+loss);
 	if ( (m>0 && m<sizeX-1) && (n>0 && n<sizeY-1) ) {
-		Ez(m, n) = Ez(m, n) + Cezh / epsilon(m,n) * ((Hy(m, n) - Hy(m-1, n)) - (Hx(m, n) - Hx(m, n-1)));
+		Ez(m, n) = Ceze*Ez(m, n) + Cezh * ((Hy(m, n) - Hy(m-1, n)) - (Hx(m, n) - Hx(m, n-1)));
 	}
 }

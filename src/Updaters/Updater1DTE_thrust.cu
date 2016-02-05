@@ -6,7 +6,7 @@
 #include "../Structures/CudaStreamsPool.h"
 
 void Updater1DTE::updateEy() {
-	thrust::counting_iterator<int> start(1);
+	thrust::counting_iterator<int> start(0);
 	thrust::counting_iterator<int> end(grid->size-1);
 	thrust::for_each(start , end , updaterEy);
 }

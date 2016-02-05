@@ -1,20 +1,20 @@
 /*
- * PeriodicCond.h
+ * PeriodicCondTE.h
  *
- *  Created on: 04 февр. 2016 г.
+ *  Created on: 05 февр. 2016 г.
  *      Author: aleksandr
  */
 
-#ifndef PERIODICCONDTM_H_
-#define PERIODICCONDTM_H_
+#ifndef PERIODICCONDTE_H_
+#define PERIODICCONDTE_H_
 
 #include "BoundaryCond.h"
 #include "../Structures/HostDeviceVector.h"
-#include "../Grids/GridTM.h"
+#include "../Grids/GridTE.h"
 
-#include "ABCFunctorsTM/EzLeftUpdater.h"
-#include "ABCFunctorsTM/EzRightUpdater.h"
-#include "PeriodicCondFunctorsTM/TopBottomUpdater.h"
+#include "ABCFunctorsTE/EyLeftUpdater.h"
+#include "ABCFunctorsTE/EyRightUpdater.h"
+#include "PeriodicCondFunctorsTE/TopBottomUpdaterTE.h"
 
 /*
  * Периодические граничные условия должны обновлять
@@ -26,22 +26,22 @@
 
 typedef HostDeviceVector vector;
 
-class PeriodicCondTM: public BoundaryCond {
+class PeriodicCondTE: public BoundaryCond {
 public:
-	PeriodicCondTM(GridTM* _grid);
-	~PeriodicCondTM() {};
+	PeriodicCondTE(GridTE* _grid);
+	~PeriodicCondTE() {};
 
 	void apply();
 private:
-	vector EzLeft, EzRight, HxTemp;
+	vector EyLeft, EyRight;
 	float coeff0, coeff1, coeff2;
 	thrust::device_vector<float> coeffDevice;
 
-	GridTM* grid;
+	GridTE* grid;
 
-	EzLeftUpdater leftUpdater;
-	EzRightUpdater rightUpdater;
-	TopBottomUpdater topBottomUpdater;
+	EyLeftUpdater leftUpdater;
+	EyRightUpdater rightUpdater;
+	TopBottomUpdaterTE topBottomUpdater;
 };
 
-#endif /* PERIODICCONDTM_H_ */
+#endif /* PERIODICCONDTE_H_ */

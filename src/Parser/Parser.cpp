@@ -48,7 +48,10 @@ Parser::~Parser() {
 	for (auto abc: ABCTMs){
 		delete abc;
 	}
-	for (auto periodic: periodics){
+	for (auto periodic: periodicsTM){
+		delete periodic;
+	}
+	for (auto periodic: periodicsTE){
 		delete periodic;
 	}
 	for (auto abc: ABCTEs){
@@ -119,7 +122,7 @@ void Parser::runTM() {
 	for (auto abc: ABCTMs){
 		updaterTM.addBoundaryCond(abc);
 	}
-	for (auto periodic: periodics){
+	for (auto periodic: periodicsTM){
 		updaterTM.addBoundaryCond(periodic);
 	}
 	if (tfsfTM != nullptr) {
@@ -164,6 +167,9 @@ void Parser::runTE() {
 	}
 	for (auto abc: ABCTEs){
 		updaterTE.addBoundaryCond(abc);
+	}
+	for (auto periodic: periodicsTE){
+		updaterTE.addBoundaryCond(periodic);
 	}
 	if (tfsfTE != nullptr) {
 		updaterTE.addTFSF(tfsfTE);
@@ -272,7 +278,7 @@ inline void Parser::addBoundaryCondTM() {
 	}
 	if (condType == "Periodic") {
 		PeriodicCondTM* periodic = new PeriodicCondTM(gridTM);
-		periodics.push_back(periodic);
+		periodicsTM.push_back(periodic);
 	}
 	if (condType == "TFSF") {
 		int firstX, lastX, firstY, lastY;
@@ -309,6 +315,10 @@ inline void Parser::addBoundaryCondTE() {
 	if (condType == "ABC") {
 		ABCTE* abc = new ABCTE(gridTE);
 		ABCTEs.push_back(abc);
+	}
+	if (condType == "Periodic") {
+		PeriodicCondTE* periodic = new PeriodicCondTE(gridTE);
+		periodicsTE.push_back(periodic);
 	}
 	if (condType == "TFSF") {
 		int firstX, lastX, firstY, lastY;

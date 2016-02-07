@@ -12,3 +12,6 @@
 .project
 .cproject
 /Release/
+/bin/*
+
+!CMakeList.txt

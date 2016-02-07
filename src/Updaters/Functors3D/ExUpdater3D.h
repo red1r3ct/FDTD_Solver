@@ -17,7 +17,7 @@ class ExUpdater3D {
 public:
 	__host__ __device__
 	ExUpdater3D(d_ptr _Ex, d_ptr _Hy, d_ptr _Hz, d_ptr _epsilon, int _sizeX, int _sizeY, int _sizeZ, float _S )
-														: Ex(_Ez), Hy(_Hy), Hz(_Hz),
+														: Ex(_Ex), Hy(_Hy), Hz(_Hz),
 														  epsilon(_epsilon), sizeX(_sizeX),
 														  sizeY(_sizeY), sizeZ(_sizeZ), S(_S) {};
 

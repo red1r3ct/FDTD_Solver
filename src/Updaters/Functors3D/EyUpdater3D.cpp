@@ -1,9 +1,0 @@
-/*
- * EyUpdater3D.cpp
- *
- *  Created on: 05 февр. 2016 г.
- *      Author: aleksandr
- */
-
-#include "EyUpdater3D.h"
-

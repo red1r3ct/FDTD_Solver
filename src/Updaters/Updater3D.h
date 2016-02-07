@@ -14,10 +14,17 @@
 #include "../BoundaryCond/BoundaryCond.h"
 #include "../Sources/Source.h"
 
+#include "Functors3D/ExUpdater3D.h"
+#include "Functors3D/EyUpdater3D.h"
+#include "Functors3D/EzUpdater3D.h"
+#include "Functors3D/HxUpdater3D.h"
+#include "Functors3D/HyUpdater3D.h"
+#include "Functors3D/HzUpdater3D.h"
+
 #include <vector>
 
 /*
- * Класс для обновления данных в случае TM поляризации.
+ * Класс для обновления данных трехмерной решетки.
  * в .cu файле реализованны функции вызовающие GPU ядра.
  */
 

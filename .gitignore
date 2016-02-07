@@ -14,4 +14,4 @@
 /Release/
 /bin/*
 
-!CMakeList.txt
+!CMakeLists.txt

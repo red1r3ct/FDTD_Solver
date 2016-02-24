@@ -8,6 +8,9 @@
 
 __host__
 void Updater3D::updateE() {
+	int sizeX = grid->sizeX;
+	int sizeY = grid->sizeY;
+	int sizeZ = grid->sizeZ;
 	thrust::counting_iterator<int> startEx(0);
 	thrust::counting_iterator<int> endEx((sizeX-1)*(sizeY-1)*(sizeZ-1));
 	thrust::counting_iterator<int> startEy(0);
@@ -21,6 +24,9 @@ void Updater3D::updateE() {
 }
 __host__
 void Updater3D::updateH() {
+	int sizeX = grid->sizeX;
+	int sizeY = grid->sizeY;
+	int sizeZ = grid->sizeZ;
 	thrust::counting_iterator<int> startHx(0);
 	thrust::counting_iterator<int> endHx((sizeX)*(sizeY-1)*(sizeZ-1));
 	thrust::counting_iterator<int> startHy(0);

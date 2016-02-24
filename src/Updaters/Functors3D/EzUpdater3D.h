@@ -25,9 +25,9 @@ public:
 	EzUpdater3D(): sizeX(0), sizeY(0), sizeZ(0), S(0) {}
 
 	void setParams(d_ptr _Ez, d_ptr _Hx, d_ptr _Hy, d_ptr _epsilon, int _sizeX, int _sizeY, int _sizeZ, float _S) {
-		E=_Ey;
+		Ez=_Ez;
 		Hx=_Hx;
-		Hz=_Hz;
+		Hy=_Hy;
 		epsilon=_epsilon;
 		sizeX=_sizeX;
 		sizeY=_sizeY;

@@ -66,7 +66,12 @@ private:
 	// Вектор источников
 	std::vector<Source*> sources;
 	// Функторы для обновления полей
-
+	ExUpdater3D ExUpdater;
+	EyUpdater3D EyUpdater;
+	EzUpdater3D EzUpdater;
+	HxUpdater3D HxUpdater;
+	HyUpdater3D HyUpdater;
+	HzUpdater3D HzUpdater;
 };
 
 #endif /* UPDATER3D_H_ */

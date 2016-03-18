@@ -22,7 +22,7 @@
 
 class UpdaterTE: public Updater {
 public:
-	UpdaterTE() : grid(nullptr), tfsfCond(nullptr) {};
+	UpdaterTE() : grid(NULL), tfsfCond(NULL) {};
 	~UpdaterTE() {};
 	// Добавляет дополнительные вычиления
 	void addRoutine(Routine* routine);

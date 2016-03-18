@@ -4,7 +4,6 @@
 #include <thrust/iterator/counting_iterator.h>
 #include <iostream>
 
-#include "../Structures/CudaStreamsPool.h"
 
 void Updater1DTM::updateEz() {
 	thrust::counting_iterator<int> start(1);

@@ -59,13 +59,6 @@ void UpdaterTE::updateFields() {
 }
 
 void UpdaterTE::updateSources() {
-	for(auto source : sources) {
-		int xCoord = source->getPositionX();
-		int yCoord = source->getPositionY();
-		int linearIndex = xCoord * (grid->sizeY-1) + yCoord;
-		thrust::device_ptr<float> dptr = &(grid->Ey.getDevicePtr())[linearIndex];
-		source->updateField(dptr, grid->time);
-	}
 	for ( int i = 0; i < sources.size(); i++ ){
 		int xCoord = (sources[i])->getPositionX();
 		int yCoord = (sources[i])->getPositionY();

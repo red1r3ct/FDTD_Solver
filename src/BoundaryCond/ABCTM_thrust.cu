@@ -5,7 +5,6 @@
 #include <thrust/system/cuda/execution_policy.h>
 #include <iostream>
 
-#include "../Structures/CudaStreamsPool.h"
 
 void ABCTM::apply() {
 	thrust::counting_iterator<int> startY(0);

@@ -6,11 +6,11 @@
  */
 
 #include "TFSFCondTE.h"
-#include "../Structures/CudaStreamsPool.h"
+
 
 TFSFCondTE::TFSFCondTE(GridTE* _grid, int _firstX, int _lastX, int _firstY, int _lastY) :
 													grid(_grid), grid1D(_grid->sizeY, _grid->S),
-													source(nullptr), firstX(_firstX), lastX(_lastX),
+													source(NULL), firstX(_firstX), lastX(_lastX),
 													firstY(_firstY), lastY(_lastY)
 {
 	updater.addGrid(&grid1D);

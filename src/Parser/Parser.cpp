@@ -10,57 +10,58 @@
 #include <cmath>
 #include <iostream>
 
-Parser::Parser(): gridTM(nullptr), gridTE(nullptr), tfsfTM(nullptr), tfsfTE(nullptr), num(0) {
+Parser::Parser(): gridTM(NULL), gridTE(NULL), tfsfTM(NULL), tfsfTE(NULL), num(0) {
 
 }
 
 Parser::~Parser() {
-	if (gridTM != nullptr) {
+	if (gridTM != NULL) {
 		delete gridTM;
 	}
-	if (gridTE != nullptr) {
+	if (gridTE != NULL) {
 		delete gridTE;
 	}
-	for (auto source: hSources){
-		delete source;
+	for (int i = 0; i < hSources.size(); i++){
+		delete hSources[i];
 	}
-	for (auto source: rSources){
-		delete source;
+	for (int i = 0; i < rSources.size(); i++){
+		delete rSources[i];
 	}
-	for (auto ezout: EzOut){
-		delete ezout;
+	for (int i = 0; i < EzOut.size(); i++){
+		delete EzOut[i];
 	}
-	for (auto hzout: HzOut){
-		delete hzout;
+	for (int i = 0; i < HzOut.size(); i++){
+		delete HzOut[i];
 	}
-	for (auto exout: ExOut){
-		delete exout;
+	for (int i = 0; i < ExOut.size(); i++){
+		delete ExOut[i];
 	}
-	for (auto eyout: EyOut){
-		delete eyout;
+	for (int i = 0; i < EyOut.size(); i++){
+		delete EyOut[i];
 	}
-	for (auto hxout: HxOut){
-		delete hxout;
+	for (int i = 0; i < HxOut.size(); i++){
+		delete HxOut[i];
 	}
-	for (auto hyout: HyOut){
-		delete hyout;
+	for (int i = 0; i < HyOut.size(); i++){
+		delete HyOut[i];
 	}
-	for (auto abc: ABCTMs){
-		delete abc;
+	for (int i = 0; i < ABCTMs.size(); i++){
+		delete ABCTMs[i];
 	}
-	for (auto periodic: periodicsTM){
-		delete periodic;
+	for (int i = 0; i < periodicsTM.size(); i++){
+		delete periodicsTM[i];
 	}
-	for (auto periodic: periodicsTE){
-		delete periodic;
+	for (int i = 0; i < periodicsTE.size(); i++){
+		delete periodicsTE[i];
 	}
-	for (auto abc: ABCTEs){
-		delete abc;
+	for (int i = 0; i < ABCTEs.size(); i++){
+		delete ABCTEs[i];
 	}
-	if (tfsfTM != nullptr) {
+
+	if (tfsfTM != NULL) {
 		delete tfsfTM;
 	}
-	if (tfsfTE != nullptr) {
+	if (tfsfTE != NULL) {
 		delete tfsfTE;
 	}
 }
@@ -107,25 +108,25 @@ void Parser::runTM() {
 			fileStream >> num;
 		}
 	}
-	for (auto source: hSources){
-		updaterTM.addSource(source);
+	for (int i = 0; i < hSources.size(); i++){
+		updaterTM.addSource(hSources[i]);
 	}
-	for (auto ezout: EzOut){
-		updaterTM.addRoutine(ezout);
+	for (int i = 0; i < EzOut.size(); i++){
+		updaterTM.addRoutine(EzOut[i]);
 	}
-	for (auto hxout: HxOut){
-		updaterTM.addRoutine(hxout);
+	for (int i = 0; i < HxOut.size(); i++){
+		updaterTM.addRoutine(HxOut[i]);
 	}
-	for (auto hyout: HyOut){
-		updaterTM.addRoutine(hyout);
+	for (int i = 0; i < HyOut.size(); i++){
+		updaterTM.addRoutine(HyOut[i]);
 	}
-	for (auto abc: ABCTMs){
-		updaterTM.addBoundaryCond(abc);
+	for (int i = 0; i < ABCTMs.size(); i++){
+		updaterTM.addBoundaryCond(ABCTMs[i]);
 	}
-	for (auto periodic: periodicsTM){
-		updaterTM.addBoundaryCond(periodic);
+	for (int i = 0; i < periodicsTM.size(); i++){
+		updaterTM.addBoundaryCond(periodicsTM[i]);
 	}
-	if (tfsfTM != nullptr) {
+	if (tfsfTM != NULL) {
 		updaterTM.addTFSF(tfsfTM);
 	}
 	updaterTM.run(num);
@@ -153,25 +154,25 @@ void Parser::runTE() {
 			fileStream >> num;
 		}
 	}
-	for (auto source: hSources){
-		updaterTE.addSource(source);
+	for (int i = 0; i < hSources.size(); i++){
+		updaterTM.addSource(hSources[i]);
 	}
-	for (auto hzout: HzOut){
-		updaterTE.addRoutine(hzout);
+	for (int i = 0; i < HzOut.size(); i++){
+		updaterTM.addRoutine(HzOut[i]);
 	}
-	for (auto exout: ExOut){
-		updaterTE.addRoutine(exout);
+	for (int i = 0; i < ExOut.size(); i++){
+		updaterTM.addRoutine(ExOut[i]);
 	}
-	for (auto eyout: EyOut){
-		updaterTE.addRoutine(eyout);
+	for (int i = 0; i < EyOut.size(); i++){
+		updaterTM.addRoutine(EyOut[i]);
 	}
-	for (auto abc: ABCTEs){
-		updaterTE.addBoundaryCond(abc);
+	for (int i = 0; i < ABCTEs.size(); i++){
+		updaterTM.addBoundaryCond(ABCTEs[i]);
 	}
-	for (auto periodic: periodicsTE){
-		updaterTE.addBoundaryCond(periodic);
+	for (int i = 0; i < periodicsTE.size(); i++){
+		updaterTM.addBoundaryCond(periodicsTE[i]);
 	}
-	if (tfsfTE != nullptr) {
+	if (tfsfTE != NULL) {
 		updaterTE.addTFSF(tfsfTE);
 	}
 	updaterTE.run(num);

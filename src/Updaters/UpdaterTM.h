@@ -28,7 +28,7 @@
 
 class UpdaterTM: public Updater {
 public:
-	UpdaterTM() : grid(nullptr), tfsfCond(nullptr) {};
+	UpdaterTM() : grid(NULL), tfsfCond(NULL) {};
 	~UpdaterTM() {	}
 	// Добавляет дополнительные вычиления
 	void addRoutine(Routine* routine);

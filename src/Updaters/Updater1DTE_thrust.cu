@@ -3,7 +3,6 @@
 #include <thrust/iterator/counting_iterator.h>
 #include <iostream>
 
-#include "../Structures/CudaStreamsPool.h"
 
 void Updater1DTE::updateEy() {
 	thrust::counting_iterator<int> start(0);

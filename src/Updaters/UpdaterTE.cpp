@@ -52,7 +52,7 @@ void UpdaterTE::addSource(Source* source) {
 
 void UpdaterTE::updateFields() {
 	updateH();
-	if (tfsfCond != nullptr) {
+	if (tfsfCond != NULL) {
 		updateTFSF();
 	}
 	updateE();
@@ -63,22 +63,29 @@ void UpdaterTE::updateSources() {
 		int xCoord = source->getPositionX();
 		int yCoord = source->getPositionY();
 		int linearIndex = xCoord * (grid->sizeY-1) + yCoord;
-		auto dptr = &(grid->Ey.getDevicePtr())[linearIndex];
+		thrust::device_ptr<float> dptr = &(grid->Ey.getDevicePtr())[linearIndex];
 		source->updateField(dptr, grid->time);
+	}
+	for ( int i = 0; i < sources.size(); i++ ){
+		int xCoord = (sources[i])->getPositionX();
+		int yCoord = (sources[i])->getPositionY();
+		int linearIndex = xCoord * (grid->sizeY-1) + yCoord;
+		thrust::device_ptr<float> dptr = &(grid->Ey.getDevicePtr())[linearIndex];
+		sources[i]->updateField(dptr, grid->time);
 	}
 }
 
 
 void UpdaterTE::updateRoutines() {
-	for(auto routine: routines) {
-		routine->compute(grid->time);
+	for ( int i = 0; i < routines.size(); i++ ){
+		routines[i]->compute(grid->time);
 	}
 	(grid->time)++;
 }
 
 void UpdaterTE::updateBoundaryCond() {
-	for (auto boundaryCond: boundaryConds) {
-		boundaryCond->apply();
+	for ( int i = 0; i < boundaryConds.size(); i++ ){
+		boundaryConds[i]->apply();
 	}
 }
 

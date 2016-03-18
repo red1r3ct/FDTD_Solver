@@ -8,7 +8,7 @@
 #include "Updater1DTE.h"
 #include <iostream>
 
-Updater1DTE::Updater1DTE() : grid(nullptr), source(nullptr) {}
+Updater1DTE::Updater1DTE() : grid(NULL), source(NULL) {}
 
 void Updater1DTE::addSource(Source* _source) {
 	source = _source;
@@ -32,7 +32,7 @@ void Updater1DTE::updateFields() {
 	updateHz();
 	updateEy();
 	int xCoord = source->getPositionX();
-	auto dptr = &(grid->Ey.getDevicePtr())[xCoord];
+	thrust::device_ptr<float> dptr = &(grid->Ey.getDevicePtr())[xCoord];
 	source->updateField(dptr, grid->time);
 	(grid->time)++;
 }

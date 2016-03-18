@@ -47,33 +47,33 @@ void UpdaterTM::addSource(Source* source) {
 
 void UpdaterTM::updateFields() {
 	updateH();
-	if (tfsfCond != nullptr) {
+	if (tfsfCond != NULL) {
 		updateTFSF();
 	}
 	updateE();
 }
 
 void UpdaterTM::updateSources() {
-	for(auto source : sources) {
-		int xCoord = source->getPositionX();
-		int yCoord = source->getPositionY();
+	for ( int i = 0; i < sources.size(); i++ ){
+		int xCoord = sources[i]->getPositionX();
+		int yCoord = sources[i]->getPositionY();
 		int linearIndex = xCoord * (grid->sizeY) + yCoord;
-		auto dptr = &(grid->Ez.getDevicePtr())[linearIndex];
-		source->updateField(dptr, grid->time);
+		thrust::device_ptr<float> dptr = &(grid->Ez.getDevicePtr())[linearIndex];
+		sources[i]->updateField(dptr, grid->time);
 	}
 }
 
 
 void UpdaterTM::updateRoutines() {
-	for(auto routine: routines) {
-		routine->compute(grid->time);
+	for ( int i = 0; i < routines.size(); i++ ){
+		routines[i]->compute(grid->time);
 	}
 	(grid->time)++;
 }
 
 void UpdaterTM::updateBoundaryCond() {
-	for (auto boundaryCond: boundaryConds) {
-		boundaryCond->apply();
+	for ( int i = 0; i < boundaryConds.size(); i++ ){
+		boundaryConds[i]->apply();
 	}
 }
 

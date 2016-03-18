@@ -8,7 +8,7 @@
 #include "Updater1DTM.h"
 #include <iostream>
 
-Updater1DTM::Updater1DTM() : grid(nullptr), source(nullptr) {}
+Updater1DTM::Updater1DTM() : grid(NULL), source(NULL) {}
 
 void Updater1DTM::addSource(Source* _source) {
 	source = _source;
@@ -31,7 +31,7 @@ void Updater1DTM::addGrid(Grid1DTM* _grid) {
 void Updater1DTM::updateFields() {
 	updateHy();
 	int xCoord = source->getPositionX();
-	auto dptr = &(grid->Ez.getDevicePtr())[xCoord];
+	thrust::device_ptr<float> dptr = &(grid->Ez.getDevicePtr())[xCoord];
 	source->updateField(dptr, grid->time);
 	updateEz();
 	(grid->time)++;

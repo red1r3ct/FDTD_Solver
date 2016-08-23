@@ -55,6 +55,7 @@ private:
 	std::vector<EzOutputRoutineTM*> EzOut;
 	std::vector<HxOutputRoutineTM*> HxOut;
 	std::vector<HyOutputRoutineTM*> HyOut;
+	std::vector<IntensityOutputRoutineTM*> IntenOut;
 	std::vector<HzOutputRoutineTE*> HzOut;
 	std::vector<ExOutputRoutineTE*> ExOut;
 	std::vector<EyOutputRoutineTE*> EyOut;

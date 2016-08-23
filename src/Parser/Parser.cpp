@@ -33,6 +33,9 @@ Parser::~Parser() {
 	for (int i = 0; i < HzOut.size(); i++){
 		delete HzOut[i];
 	}
+	for (int i = 0; i < IntenOut.size(); i++){
+		delete IntenOut[i];
+	}
 	for (int i = 0; i < ExOut.size(); i++){
 		delete ExOut[i];
 	}
@@ -113,6 +116,9 @@ void Parser::runTM() {
 	}
 	for (int i = 0; i < EzOut.size(); i++){
 		updaterTM.addRoutine(EzOut[i]);
+	}
+	for (int i = 0; i < IntenOut.size(); i++){
+		updaterTM.addRoutine(IntenOut[i]);
 	}
 	for (int i = 0; i < HxOut.size(); i++){
 		updaterTM.addRoutine(HxOut[i]);
@@ -382,6 +388,16 @@ inline void Parser::addRoutineTM() {
 															startTime, endTime,
 															period);
 		HyOut.push_back(routine);
+	}
+	if (routineType == "Intensity") {
+		std::string fileName;
+		int firstX, lastX, stepX, firstY, lastY, stepY, startTime, endTime, period;
+		fileStream >> fileName >> firstX >> lastX >> stepX >> firstY >> lastY >> stepY >> startTime >> endTime >> period;
+		IntensityOutputRoutineTM* routine = new IntensityOutputRoutineTM(fileName, gridTM, firstX, lastX,
+															stepX, firstY, lastY, stepY,
+															startTime, endTime,
+															period);
+		IntenOut.push_back(routine);
 	}
 }
 

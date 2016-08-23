@@ -22,6 +22,18 @@ HostDeviceVector::HostDeviceVector(std::size_t size, float placeholder) {
 	thrust::fill(hostVector.begin(), hostVector.end(), placeholder);
 }
 
+void HostDeviceVector::resize(std::size_t size, float placeholder) {
+	deviceVector.resize(size);
+	thrust::fill(deviceVector.begin(), deviceVector.end(), placeholder);
+	hostVector.resize(size);
+	thrust::fill(hostVector.begin(), hostVector.end(), placeholder);
+}
+
+void HostDeviceVector::fill(float placeholder) {
+	thrust::fill(deviceVector.begin(), deviceVector.end(), placeholder);
+	thrust::fill(hostVector.begin(), hostVector.end(), placeholder);
+}
+
 void HostDeviceVector::GPUtoCPU() {
 	thrust::copy(deviceVector.begin(), deviceVector.end(), hostVector.begin());
 }

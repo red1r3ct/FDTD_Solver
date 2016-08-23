@@ -26,6 +26,10 @@ public:
 	void GPUtoCPU();
 	// Синхронизирует данные с CPU на GPU
 	void CPUtoGPU();
+	// Изменяет размер вектора на GPU и на GPU и заполняет его placeholder
+	void resize(std::size_t size, float placeHolder);
+	// Заполняет и GPU и CPu вектор placeholder-ом
+	void fill(float placeHolder);
 	// Преобразует в тип указателя на вектор GPU
 	thrust::device_ptr<float> getDevicePtr();
 	// Преобразует в тип указвтеля на вектор CPU

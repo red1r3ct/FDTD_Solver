@@ -26,9 +26,14 @@ void IntensityOutputRoutineTM::print() {
 }
 
 void IntensityOutputRoutineTM::flushData() {
-	for(int i = 0; i < intensity.size(); i++) {
+	if (copyEachIteration) {
+		for(int i = 0; i < intensity.size(); i++) {
 			intensity[i] = 0;
 		}
+		intensity.fill(0);
+	} else {
+		intensityGPU.fill(0);
+	}
 }
 
 void IntensityOutputRoutineTM::collectData() {

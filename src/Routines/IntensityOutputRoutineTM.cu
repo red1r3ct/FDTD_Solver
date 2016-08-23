@@ -26,7 +26,6 @@ void Updater1DTM::updateHy() {
 
 
 void IntensityOutputRoutineTM::collectDataGPU() {
-	grid->Ez.GPUtoCPU();
 	thrust::counting_iterator<int> start(0);
 	thrust::counting_iterator<int> end(grid->size-1);
 	thrust::for_each(start , end , updaterHy);

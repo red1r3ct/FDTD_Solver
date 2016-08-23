@@ -19,7 +19,7 @@
 /*
  * Класс реализующий вывод интенсивности в файл.
  * Внимание!!! Совершает копирование данных о поле
- * Ez с GPu на CPU
+ * Ez с GPU на CPU
  */
 
 class IntensityOutputRoutineTM: public Routine {

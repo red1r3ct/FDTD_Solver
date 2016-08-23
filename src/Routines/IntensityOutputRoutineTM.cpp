@@ -8,6 +8,8 @@
 #include "IntensityOutputRoutineTM.h"
 #include <fstream>
 #include <cmath>
+#include <thrust/for_each.h>
+#include <thrust/iterator/counting_iterator.h>
 
 void IntensityOutputRoutineTM::print() {
 	std::ofstream file;

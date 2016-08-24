@@ -90,7 +90,7 @@ void UpdaterTM::run( int num) {
 	for (int i = 0; i < num; i++) {
 		iterate();
 		if (i%100 == 0) {
-			std::cout << "Step " << i << " complete \n";
+			std::cout << "Step " << i << " complete, " << 100/((float)(clock() - start_time)/CLOCKS_PER_SEC) << " steps/secs\n";
 		}
 	}
 	unsigned int end_time = clock(); // конечное время

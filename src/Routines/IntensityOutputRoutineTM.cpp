@@ -11,7 +11,7 @@
 #include <thrust/for_each.h>
 #include <thrust/iterator/counting_iterator.h>
 
-void IntensityOutputRoutineTM::print() {
+void IntensityOutputRoutineTM::printFromCPU() {
 	std::ofstream file;
 	std::string currentFileName = fileName+"_"+std::to_string(currentTime) + ".txt";
 	file.open(currentFileName, std::ofstream::trunc);
@@ -27,6 +27,31 @@ void IntensityOutputRoutineTM::print() {
 	file.close();
 }
 
+void IntensityOutputRoutineTM::printFromGPU() {
+	std::ofstream file;
+	std::string currentFileName = fileName+"_"+std::to_string(currentTime) + ".txt";
+	intensityGPU.GPUtoCPU();
+	file.open(currentFileName, std::ofstream::trunc);
+	if (!file.is_open()) {
+		std::cout << 'File' << currentFileName << ' not opened' << std::endl;
+		return;
+	}
+	for(int i = 0; i < intensityGPU.getSize(); i++) {
+		int xCoord = i/sizeY;
+		int yCoord = i%sizeY;
+		file << firstX+resolutionX*xCoord << " " << firstY+resolutionY*yCoord << " " << intensityGPU[i]/period << std::endl;
+	}
+	file.close();
+}
+
+void IntensityOutputRoutineTM::print() {
+	if (copyEachIteration) {
+		printFromCPU();
+	} else {
+		printFromGPU();
+	}
+}
+
 void IntensityOutputRoutineTM::flushData() {
 	if (copyEachIteration) {
 		for(int i = 0; i < intensity.size(); i++) {
@@ -39,6 +64,14 @@ void IntensityOutputRoutineTM::flushData() {
 }
 
 void IntensityOutputRoutineTM::collectData() {
+	if (copyEachIteration) {
+		collectDataCPU();
+	} else {
+		collectDataGPU();
+	}
+}
+
+void IntensityOutputRoutineTM::collectDataCPU() {
 	grid->Ez.GPUtoCPU();
 	#define Ez(M, N) grid->Ez[(M) * (grid->sizeY) + (N)]
 	for(int m = 0; m < sizeX; m++ ) {

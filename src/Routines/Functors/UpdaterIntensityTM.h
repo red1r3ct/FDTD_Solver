@@ -19,7 +19,7 @@ public:
 	UpdaterIntensityTM(d_ptr _intensity, d_ptr _Ez, int, _firstX, int _firstY, int _sizeY,
 									int _gridSizeY, int _stepX, int _stepY) :
 														intensity(_intensity), Ez(_Ez),
-														firstX(_firstX), firstX(_firstY),
+														firstX(_firstX), firstY(_firstY),
 														sizeY(_sizeY), gridSizeY(_gridSizeY),
 														stepX(_stepX), stepY(_stepY)
 														{};

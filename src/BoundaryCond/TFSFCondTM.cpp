@@ -9,7 +9,7 @@
 
 
 TFSFCondTM::TFSFCondTM(GridTM* _grid, int _firstX, int _lastX, int _firstY, int _lastY) :
-													grid(_grid), grid1D(_grid->sizeY, _grid->S),
+													grid(_grid), grid1D(_grid->sizeX, _grid->S),
 													source(NULL), firstX(_firstX), lastX(_lastX),
 													firstY(_firstY), lastY(_lastY)
 {

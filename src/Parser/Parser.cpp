@@ -290,6 +290,7 @@ inline void Parser::addBoundaryCondTM() {
 	if (condType == "TFSF") {
 		int firstX, lastX, firstY, lastY;
 		fileStream >> firstX >> lastX >> firstY >> lastY;
+		std::cout << firstX << " " << lastX << " " << firstY << " " << lastY << " ";
 		tfsfTM = new TFSFCondTM(gridTM, firstX, lastX, firstY, lastY);
 		std::string sourceType;
 		fileStream >> sourceType;

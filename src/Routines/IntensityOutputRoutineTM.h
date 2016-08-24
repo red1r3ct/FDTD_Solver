@@ -44,6 +44,14 @@ public:
 			std::cout << "Warning: program will copy Ez vector on each iteration from GPU to CPU, to prevent it specify copyEachIteration = flase. It speed up computation but increase memory consumption." << std::endl;
 		} else {
 			intensityGPU.resize(sizeX*sizeY, 0);
+			updaterIntensity.setParams(intensityGPU.getDevicePtr(),
+										Ez.getDevicePtr(),
+										firstX,
+										firstY,
+										sizeY,
+										grid->sizeY,
+										resolutionX,
+										resolutionY);
 			std::cout << "Warning: To decrease memory consumption specify copyEachIteration = true" << std::endl;
 		}
 	};
@@ -52,9 +60,14 @@ public:
 	void compute(int time);
 private:
 	void print();
+	void printFromGPU();
+	void printFromCPU();
 	void collectData();
+	void collectDataCPU();
 	void collectDataGPU();
 	void flushData();
+
+	UpdaterIntensityTM updaterIntensity;
 
 	std::vector<float> intensity;
 	HostDeviceVector<float> intensityGPU;

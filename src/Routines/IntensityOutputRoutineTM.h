@@ -27,12 +27,12 @@ public:
 	IntensityOutputRoutineTM(std::string _fileName, GridTM* _grid,
 							 int _firstX, int _lastX, int _resolutionX,
 							 int _firstY, int _lastY, int _resolutionY,
-							 int _startTime, int _endTime, int _period, bool _copyEachIteration) :
+							 int _startTime, int _endTime, int _period, int _copyEachIteration) :
 								 fileName(_fileName), grid(_grid),
 								 firstX(_firstX), lastX(_lastX), resolutionX(_resolutionX),
 								 firstY(_firstY), lastY(_lastY), resolutionY(_resolutionY),
 								 startTime(_startTime), endTime(_endTime), period(_period),
-								 currentTime(0), copyEachIteration(_copyEachIteration){
+								 currentTime(0), copyEachIteration(_copyEachIteration != 0){
 		sizeX=(lastX-firstX)/resolutionX;
 		sizeY=(lastY-firstY)/resolutionY;
 		std::cout << "Intensity output to files "<< fileName <<"_*.txt : \n";

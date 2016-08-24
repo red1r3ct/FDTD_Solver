@@ -8,7 +8,7 @@
 #include "HxUpdater.h"
 #include "SmartIndex.h"
 
-// indx - индекс вдоль правой или левой границы по y от firstY до lastY
+// indx - индекс вдоль правой или левой границы по y от firstX до lastX
 
 __host__ __device__
 void HxUpdater::operator() (const int indx) {

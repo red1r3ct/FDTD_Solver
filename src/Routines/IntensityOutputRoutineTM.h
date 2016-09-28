@@ -32,7 +32,7 @@ public:
 								 firstX(_firstX), lastX(_lastX), resolutionX(_resolutionX),
 								 firstY(_firstY), lastY(_lastY), resolutionY(_resolutionY),
 								 startTime(_startTime), endTime(_endTime), period(_period),
-								 currentTime(0), copyEachIteration(_copyEachIteration != 0){
+								 currentTime(0), copyEachIteration(_copyEachIteration != 0), stepsCollected(0){
 		sizeX=(lastX-firstX)/resolutionX;
 		sizeY=(lastY-firstY)/resolutionY;
 		std::cout << "Intensity output to files "<< fileName <<"_*.txt : \n";
@@ -76,7 +76,7 @@ private:
 
 	int currentTime, sizeX, sizeY;
 
-	int firstX, firstY, lastX, lastY, resolutionX, resolutionY, startTime, endTime, period;
+	int firstX, firstY, lastX, lastY, resolutionX, resolutionY, startTime, endTime, period, stepsCollected;
 	bool copyEachIteration;
 	std::string fileName;
 	GridTM* grid;

@@ -87,14 +87,11 @@ void UpdaterTM::updateTFSF() {
 
 void UpdaterTM::run( int num) {
 	unsigned int start_time =  clock(); // начальное время
-	for (int i = 1; i <= num; i++) {
+	for (int i = 0; i < num; i++) {
 		iterate();
-		if (i%100 == 0) {
+		if (i%100 == 0 && i != 0) {
 			std::cout << "Step " << i << " complete, " << 100/((float)(clock() - start_time)/CLOCKS_PER_SEC) << " steps/secs\n";
 			start_time =  clock();
 		}
 	}
-	unsigned int end_time = clock(); // конечное время
-	unsigned int time = end_time - start_time; // искомое время
-    std::cout <<"step per second : "<< num/((float)(time)/CLOCKS_PER_SEC) << std::endl;
 }

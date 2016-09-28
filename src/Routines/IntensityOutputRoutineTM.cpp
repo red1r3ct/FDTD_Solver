@@ -53,6 +53,7 @@ void IntensityOutputRoutineTM::print() {
 }
 
 void IntensityOutputRoutineTM::flushData() {
+	stepsCollected = 0;
 	if (copyEachIteration) {
 		for(int i = 0; i < intensity.size(); i++) {
 			intensity[i] = 0;
@@ -64,6 +65,7 @@ void IntensityOutputRoutineTM::flushData() {
 }
 
 void IntensityOutputRoutineTM::collectData() {
+	stepsCollected++;
 	if (copyEachIteration) {
 		collectDataCPU();
 	} else {
@@ -84,10 +86,10 @@ void IntensityOutputRoutineTM::collectDataCPU() {
 void IntensityOutputRoutineTM::compute(int time) {
 	if (time > startTime && time < endTime) {
 		collectData();
-		if ((time-startTime)%period == 0) {
+		if ( stepsCollected == period ) {
 			print();
 			flushData();
 		}
 	}
-	currentTime++;
+	currentTime = time;
 }

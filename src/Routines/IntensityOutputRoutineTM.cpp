@@ -57,7 +57,7 @@ void IntensityOutputRoutineTM::flushData() {
 		for(int i = 0; i < intensity.size(); i++) {
 			intensity[i] = 0;
 		}
-		intensity.fill(0);
+		memset(&intensity[0], 0, intensity.size() * sizeof intensity[0]);
 	} else {
 		intensityGPU.fill(0);
 	}

@@ -45,7 +45,7 @@ public:
 		} else {
 			intensityGPU.resize(sizeX*sizeY, 0);
 			updaterIntensity.setParams(intensityGPU.getDevicePtr(),
-										Ez.getDevicePtr(),
+										grid->Ez.getDevicePtr(),
 										firstX,
 										firstY,
 										sizeY,
@@ -70,13 +70,14 @@ private:
 	UpdaterIntensityTM updaterIntensity;
 
 	std::vector<float> intensity;
-	HostDeviceVector<float> intensityGPU;
+	HostDeviceVector intensityGPU;
 	#define intensity(M, N) intensity[(M)*sizeY + (N)]
 	#define intensityGPU(M, N) intensityGPU[(M)*sizeY + (N)]
 
 	int currentTime, sizeX, sizeY;
 
 	int firstX, firstY, lastX, lastY, resolutionX, resolutionY, startTime, endTime, period;
+	bool copyEachIteration;
 	std::string fileName;
 	GridTM* grid;
 };

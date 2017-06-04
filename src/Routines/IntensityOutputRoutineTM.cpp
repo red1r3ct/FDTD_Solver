@@ -31,7 +31,7 @@ void IntensityOutputRoutineTM::printFromGPU() {
 	std::ofstream file;
 	std::string currentFileName = fileName+"_"+std::to_string(currentTime) + ".txt";
 	intensityGPU.GPUtoCPU();
-	file.open(currentFileName, std::ofstream::trunc);
+	file.open(currentFileName, std::ios::trunc | std::ios::binary);
 	if (!file.is_open()) {
 		std::cout << 'File' << currentFileName << ' not opened' << std::endl;
 		return;
@@ -39,7 +39,7 @@ void IntensityOutputRoutineTM::printFromGPU() {
 	for(int i = 0; i < intensityGPU.getSize(); i++) {
 		int xCoord = i/sizeY;
 		int yCoord = i%sizeY;
-		file << firstX+resolutionX*xCoord << " " << firstY+resolutionY*yCoord << " " << intensityGPU[i]/period << std::endl;
+		file << firstX+resolutionX*xCoord << firstY+resolutionY*yCoord << intensityGPU[i]/period;
 	}
 	file.close();
 }

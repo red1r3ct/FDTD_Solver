@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-from helpers.aspherical_lens import check_point as check_point_asph
-from helpers.spherical_lens import check_point as check_point_sph
-from helpers.dimensions import mm2px
-from helpers.output import output_array_to_file, output_png
+from .helpers.aspherical_lens import check_point as check_point_asph
+from .helpers.spherical_lens import check_point as check_point_sph
+from .helpers.dimensions import mm2px
+from .helpers.output import output_array_to_file, output_png
 
 size_x = 8000
 size_y = 6000

@@ -18,3 +18,4 @@ realized Finite difference time domain methods for electromagnetic simulations.
 - [ ] Epsilon/sigma from .png or .bmp
 - [ ] Download results from web
 - [ ] Web auth
+- [ ] Improve build system

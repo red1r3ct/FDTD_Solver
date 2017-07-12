@@ -2,6 +2,19 @@
 FDTD methods realization on CUDA. This project based on cuda::thrust library and 
 realized Finite difference time domain methods for electromagnetic simulations.
 
-# Run files
-Run file name passed as a command line first argument. Templates for TM and TE 
-polarizations can be found in /templates/
+# Run inside Nvidia Docker
+ * Install nvidia-docker https://github.com/NVIDIA/nvidia-docker
+ * ...
+ 
+# Checklist
+
+- [ ] Dockerize env
+- [ ] TE polarization
+- [ ] Web frontend
+- [ ] Remote task runner
+- [ ] Stats module
+- [ ] Rework examples
+- [ ] Move to yaml or json input files
+- [ ] Epsilon/sigma from .png or .bmp
+- [ ] Download results from web
+- [ ] Web auth

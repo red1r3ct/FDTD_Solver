@@ -1,5 +1,7 @@
 const express = require('express');
 const apiRouter = require('./backend/routes');
+require('./backend/services/db');
+
 const app = express();
 
 app.use('/api', apiRouter);

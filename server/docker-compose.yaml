@@ -1,0 +1,26 @@
+version: '3'
+services:
+  fdtd_solver:
+    build:
+      dockerfile: ./Dockerfile
+      context: .
+    hostname: fdtd_solver
+    container_name: fdtd_solver
+    env_file:
+      - secret.env
+    ports:
+      - 3000:3000
+    restart: always
+    links:
+      - fdtd_db
+
+  fdtd_db:
+    image: postgres:9.6.3
+    hostname: fdtd_db
+    container_name: fdtd_db
+    ports:
+      - 5432:5432
+    env_file:
+      - secret.env
+    restart: always
+

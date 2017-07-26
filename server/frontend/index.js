@@ -22,10 +22,10 @@ const store = createStore(
 
 ReactDOM.render(
     <Provider store={store}>
-        <Router history={history}>
+        <ConnectedRouter history={history}>
             <Route path="/" component={Loading}/>
             <Route path="/login" component={Auth}/>
-        </Router>
+        </ConnectedRouter>
     </Provider>,
     document.getElementById('root')
 );

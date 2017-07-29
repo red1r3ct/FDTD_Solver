@@ -13,19 +13,19 @@ const history = createHistory();
 const historyMiddleware = routerMiddleware(history);
 
 const store = createStore(
-    combineReducers({
-        ...reducers,
-        router: routerReducer
-    }),
-    applyMiddleware(historyMiddleware)
+	combineReducers({
+		...reducers,
+		router: routerReducer
+	}),
+	applyMiddleware(historyMiddleware)
 );
 
 ReactDOM.render(
-    <Provider store={store}>
-        <ConnectedRouter history={history}>
-            <Route path="/" component={Loading}/>
-            <Route path="/login" component={Auth}/>
-        </ConnectedRouter>
-    </Provider>,
-    document.getElementById('root')
+	<Provider store={store}>
+		<ConnectedRouter history={history}>
+			<Route path="/" component={Loading}/>
+			<Route path="/login" component={Auth}/>
+		</ConnectedRouter>
+	</Provider>,
+	document.getElementById('root')
 );

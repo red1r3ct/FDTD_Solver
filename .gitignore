@@ -24,3 +24,5 @@ Makefile
 /server/npm-debug.log
 /server/static
 /server/secret.env
+
+.idea

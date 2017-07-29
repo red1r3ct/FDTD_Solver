@@ -17,13 +17,16 @@ const sequelize = new Sequelize(
 	}
 );
 
-sequelize
-	.authenticate()
-	.then(() => {
+async function init() {
+	try {
+		await sequelize.authenticate();
 		log.info('Connection has been established successfully.');
-	})
-	.catch(err => {
+	} catch (err) {
 		log.info('Unable to connect to the database: ', err);
-	});
+	}
+}
 
-module.exports =  sequelize;
+module.exports = {
+	init,
+	conn: sequelize,
+};

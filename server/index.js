@@ -10,14 +10,18 @@ app.use(require('morgan')('combined'));
 app.use(require('express-session')({
 	secret: process.env.SECRET_SEED,
 	resave: true,
-	saveUninitialized: true
+	saveUninitialized: true ,
 }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use('/api', apiRouter);
 
 app.get('*', function (req, res) {
-	res.sendFile(__dirname + '/static/index.html');
+	if (req.user || req.path === '/auth') {
+		res.sendFile(__dirname + '/static/index.html');
+	} else {
+		res.redirect('/auth');
+	}
 });
 
 db.init().then(() => {

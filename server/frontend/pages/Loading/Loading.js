@@ -1,11 +1,27 @@
-import React from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import CenteredLayout from '../../components/CenteredLayout/CenteredLayout';
-import {Preloader} from 'react-materialize';
+import Background from '../../components/Background/Background';
+import Header from '../../components/Header/Header';
+import {CircularProgress} from 'material-ui/Progress';
 
-export const Loading = () => (
-    <CenteredLayout>
-        <Preloader color="red"/>
-    </CenteredLayout>
-);
+export default class Loading extends Component {
+	static propTypes = {
+		checkAuth: PropTypes.func.isRequired,
+	};
 
-export default Loading;
+	componentDidMount() {
+		this.props.checkAuth();
+	}
+
+	render() {
+		return (
+			<Background>
+				<Header/>
+				<CenteredLayout>
+					<CircularProgress color="accent"/>
+				</CenteredLayout>
+			</Background>
+		)
+	}
+}

@@ -14,7 +14,7 @@ INCLUDE_DIRECTORIES(/usr/local/cuda/include)
 file(GLOB_RECURSE SOURCES "src/*.cpp" "src/*.cu" "src/*.h")
 CUDA_ADD_EXECUTABLE(FDTD_Solver ${SOURCES})
 
-SET(CMAKE_CXX_FLAGS "-w -std=c++11 -O3 -ffast-math -pthread")
+SET(CMAKE_CXX_FLAGS "-w -std=c++11 -O3 -ffast-math -pthreads")
 
 LIST(APPEND CUDA_NVCC_FLAGS "—compiler-options; -fno-strict-aliasing; -lineinfo; -use_fast_math; -Xptxas")
 

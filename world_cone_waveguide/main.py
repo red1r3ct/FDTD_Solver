@@ -57,5 +57,5 @@ if __name__ == "__main__":
     n_core = float(args.n_core)
     sig_shell = float(args.sig_shell)
     d_lam = float(args.d_lam)
-    alpha = float(args.alpha / 180 * math.pi)
+    alpha = float(args.alpha) / 180.0 * math.pi
     write(lam_px, n_core, sig_shell, d_lam, alpha)

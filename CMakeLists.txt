@@ -16,7 +16,7 @@ CUDA_ADD_EXECUTABLE(FDTD_Solver ${SOURCES})
 
 SET(CMAKE_CXX_FLAGS "-w -std=c++11 -O3 -ffast-math")
 
-LIST(APPEND CUDA_NVCC_FLAGS "—compiler-options  -fno-strict-aliasing -lineinfo -use_fast_math -Xptxas -fPIC")
+LIST(APPEND CUDA_NVCC_FLAGS "—compiler-options; -fno-strict-aliasing; -lineinfo; -use_fast_math; -Xptxas; -fPIC")
 
 MESSAGE(${CUDA_NVCC_FLAGS})
 

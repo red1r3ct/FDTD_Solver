@@ -53,9 +53,9 @@ if __name__ == "__main__":
     parser.add_argument("--d_lam", help="Waveguide diameter in lambda")
     parser.add_argument("--alpha", help="Cone angle in degrees")
     args = parser.parse_args()
-    lam_px = args.lam_px
-    n_core = args.n_core
-    sig_shell = args.sig_shell
-    d_lam = args.d_lam
-    alpha = args.alpha / 180 * math.pi
+    lam_px = int(args.lam_px)
+    n_core = float(args.n_core)
+    sig_shell = float(args.sig_shell)
+    d_lam = float(args.d_lam)
+    alpha = float(args.alpha / 180 * math.pi)
     write(lam_px, n_core, sig_shell, d_lam, alpha)

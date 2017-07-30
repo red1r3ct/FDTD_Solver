@@ -3,7 +3,7 @@ SET(CMAKE_CXX_COMPILER clang++)
 PROJECT(FDTD_solver)
 FIND_PACKAGE(Threads REQUIRED)
 FIND_PACKAGE(CUDA REQUIRED)
-target_link_libraries(FDTD_solver pthread)
+target_link_libraries(FDTD_solver pthreads)
 
 INCLUDE(FindCUDA)
 

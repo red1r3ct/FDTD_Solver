@@ -19,3 +19,10 @@ cmake*
 Makefile
 
 !CMakeLists.txt
+
+/server/node_modules
+/server/npm-debug.log
+/server/static
+/server/secret.env
+
+.idea

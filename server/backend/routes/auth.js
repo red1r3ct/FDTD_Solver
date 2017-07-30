@@ -4,7 +4,7 @@ const GitHubStrategy = require('passport-github').Strategy;
 const User = require('../models/user');
 const authRouter = express.Router();
 
-const allowedGithubUsersId =['12786230'];
+const allowedGithubUsersId = ['12786230'];
 
 passport.use(new GitHubStrategy({
 	clientID: process.env.GITHUB_CLIENT_ID,
@@ -45,9 +45,9 @@ authRouter.delete('/', function (req, res) {
 
 authRouter.get('/', function (req, res) {
 	if (req.user) {
-		res.status(200).json(req.user);
+		res.status(200).json({user: req.user, error: false});
 	} else {
-		res.redirect('/auth');
+		res.status(200).json({error: true});
 	}
 });
 

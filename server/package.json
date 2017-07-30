@@ -46,6 +46,7 @@
     "sequelize": "^4.4.2",
     "style-loader": "^0.18.2",
     "webpack": "^3.2.0",
+    "whatwg-fetch": "^2.0.3",
     "winston": "^2.3.1"
   },
   "devDependencies": {

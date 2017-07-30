@@ -6,14 +6,6 @@ import Header from '../../components/Header/Header';
 import {CircularProgress} from 'material-ui/Progress';
 
 export default class Loading extends Component {
-	static propTypes = {
-		checkAuth: PropTypes.func.isRequired,
-	};
-
-	componentDidMount() {
-		this.props.checkAuth();
-	}
-
 	render() {
 		return (
 			<Background>

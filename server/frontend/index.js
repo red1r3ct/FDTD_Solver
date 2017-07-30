@@ -11,6 +11,7 @@ import createSagaMiddleware from 'redux-saga'
 import reducers from './reducers';
 import sagas from './sagas';
 import Tasks from './pages/Tasks/Tasks';
+import Loading from './pages/Loading/Loading';
 import Auth from './pages/Auth/Auth.connected';
 
 const history = createHistory();
@@ -32,8 +33,9 @@ ReactDOM.render(
 	<Provider store={store}>
 		<ConnectedRouter history={history}>
 			<div>
+				<Route path="/" component={Loading}/>
 				<Route path="/auth" component={Auth}/>
-				<Route path="/" component={Tasks}/>
+				<Route path="/tasks" component={Tasks}/>
 			</div>
 		</ConnectedRouter>
 	</Provider>,

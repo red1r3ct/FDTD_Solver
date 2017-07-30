@@ -1,10 +1,11 @@
 import {connect} from 'react-redux';
 import Auth from './Auth';
+import {login} from '../../actions/auth';
 
 const mapStateToProps = (state, ownProps) => ({});
 const mapDispatchToProps = (dispatch, ownProps) => ({
-	onLogin: () => {
-		console.log("login");
+	onLogin: (method) => {
+		dispatch(login(method))
 	}
 });
 

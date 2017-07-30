@@ -10,7 +10,7 @@ app.use(require('morgan')('combined'));
 app.use(require('express-session')({
 	secret: process.env.SECRET_SEED,
 	resave: true,
-	saveUninitialized: true ,
+	saveUninitialized: true,
 }));
 app.use(passport.initialize());
 app.use(passport.session());

@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
 	devtool: 'eval-source-map',
-	entry: ['babel-polyfill', path.resolve('./frontend/index.js')],
+	entry: ['babel-polyfill', 'whatwg-fetch', path.resolve('./frontend/index.js')],
 	output: {
 		path: path.resolve('./static'),
 		filename: 'bundle.js',

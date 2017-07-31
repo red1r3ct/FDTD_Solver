@@ -56,7 +56,7 @@ def write(lam_px, n_core, sig_shell, d_over_lam, alpha, num, sim_type):
     write_sig(x_0, y_0, length, d_over_lam * lam_px, d_shell, size_x, size_y, sig_shell, base_path)
     write_conf(type, x_0 - 10 * lam_px, y_0, lam_px, size_x, size_y, num, base_path)
 
-def write_conf(sim_type, x_source, y_source, lam_px, size_x, size_y, num):
+def write_conf(sim_type, x_source, y_source, lam_px, size_x, size_y, num, base_path):
     i_big_out_first_x = 0
     i_big_out_last_x = size_x
     i_big_step = 5

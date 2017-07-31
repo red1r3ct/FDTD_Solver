@@ -5,6 +5,7 @@ from .helpers.output import output_array_to_file
 
 import argparse
 import math
+import os
 
 
 def write_eps(x_0, y_0, length, d, alpha, size_x, size_y, n_core, base_path):

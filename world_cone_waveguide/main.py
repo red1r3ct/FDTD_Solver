@@ -51,7 +51,7 @@ def write(lam_px, n_core, sig_shell, d_over_lam, alpha, num, sim_type):
         sig_shell=sig_shell
     )
     if not os.path.exists(base_path):
-    os.makedirs(base_path)
+        os.makedirs(base_path)
     write_eps(x_0, y_0, length, d_over_lam * lam_px, alpha, size_x, size_y, n_core)
     write_sig(x_0, y_0, length, d_over_lam * lam_px, d_shell, size_x, size_y, sig_shell)
     write_conf(type, x_0 - 10 * lam_px, y_0, lam_px, size_x, size_y, num)

@@ -42,13 +42,15 @@ def write(lam_px, n_core, sig_shell, d_over_lam, alpha, num, sim_type):
     size_y = int(10 * lam_px + d_shell)
     x_0 = int(10 * lam_px)
     y_0 = int(size_y / 2)
-    base_path = 'cone_v1_d={d_over_lam}_a={alpha_deg}_lam={lam_px}_n={n_core}_sig={sig_shell}'.format(
+    base_path = './cone_v1_d={d_over_lam}_a={alpha_deg}_lam={lam_px}_n={n_core}_sig={sig_shell}'.format(
         d_over_lam=d_over_lam,
         alpha_deg=( alpha * 180 / math.pi ),
         lam_px=lam_px,
         n_core=n_core,
         sig_shell=sig_shell
     )
+    if not os.path.exists(base_path):
+    os.makedirs(base_path)
     write_eps(x_0, y_0, length, d_over_lam * lam_px, alpha, size_x, size_y, n_core)
     write_sig(x_0, y_0, length, d_over_lam * lam_px, d_shell, size_x, size_y, sig_shell)
     write_conf(type, x_0 - 10 * lam_px, y_0, lam_px, size_x, size_y, num)

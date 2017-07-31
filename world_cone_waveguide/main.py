@@ -74,7 +74,7 @@ def write_conf(sim_type, x_source, y_source, lam_px, size_x, size_y, num, base_p
     i_small_out_last_y = size_y
 
     conf = '''SimulationType: {type}
-GridTE: {size_x} {size_y}
+Grid{type}: {size_x} {size_y}
 Epsilon: epsilon.txt
 Sigma: sigma.txt
 BoundaryCond: ABC
@@ -82,7 +82,7 @@ Output: Intensity i_big {i_big_out_first_x} {i_big_out_last_x} {i_big_step} {i_b
 Output: Intensity i_small {i_small_out_first_x} {i_small_out_last_x} {i_small_step} {i_small_out_first_y} {i_small_out_last_y} {i_small_step} {start_time} {end_time} {step_time} 1
 Source: Harmonic 1 {lam_px} {x_source} {y_source}
 Run: {num}
-    '''.format(
+'''.format(
         type=sim_type,
         size_x=size_x,
         size_y=size_y,

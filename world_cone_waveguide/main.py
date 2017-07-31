@@ -54,7 +54,7 @@ def write(lam_px, n_core, sig_shell, d_over_lam, alpha, num, sim_type):
         os.makedirs(base_path)
     write_eps(x_0, y_0, length, d_over_lam * lam_px, alpha, size_x, size_y, n_core, base_path)
     write_sig(x_0, y_0, length, d_over_lam * lam_px, d_shell, size_x, size_y, sig_shell, base_path)
-    write_conf(type, x_0 - 10 * lam_px, y_0, lam_px, size_x, size_y, num, base_path)
+    write_conf(sim_type, x_0 - 10 * lam_px, y_0, lam_px, size_x, size_y, num, base_path)
 
 def write_conf(sim_type, x_source, y_source, lam_px, size_x, size_y, num, base_path):
     i_big_out_first_x = 0

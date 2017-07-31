@@ -35,7 +35,7 @@ def write_sig(x_0, y_0, length, d, d_shell, size_x, size_y, sig_shell):
     output_array_to_file(sig, 'sigma.txt', size_x)
 
 
-def write(lam_px, n_core, sig_shell, d_over_lam, alpha):
+def write(lam_px, n_core, sig_shell, d_over_lam, alpha, num, sim_type):
     length = int(15 * lam_px)
     d_shell = int(d_over_lam * lam_px + 8 * lam_px)
     size_x = int(26 * lam_px + length)
@@ -44,6 +44,59 @@ def write(lam_px, n_core, sig_shell, d_over_lam, alpha):
     y_0 = int(size_y / 2)
     write_eps(x_0, y_0, length, d_over_lam * lam_px, alpha, size_x, size_y, n_core)
     write_sig(x_0, y_0, length, d_over_lam * lam_px, d_shell, size_x, size_y, sig_shell)
+    write_conf(type, x_0 - 10 * lam_px, y_0, lam_px, size_x, size_y, num)
+
+def write_conf(sim_type, x_source, y_source, lam_px, size_x, size_y, num):
+    i_big_out_first_x = 0
+    i_big_out_last_x = size_x
+    i_big_step = 5
+    i_big_out_first_y = 0
+    i_big_out_last_y = size_y
+
+    start_time = 0
+    end_time = num
+    step_time = int(lam_px * math.sqrt(2))
+
+    i_small_out_first_x = 0
+    i_small_out_last_x = size_x
+    i_small_step = 1
+    i_small_out_first_y = 0
+    i_small_out_last_y = size_y
+
+    conf = '''
+        SimulationType: {type}
+        GridTE: {size_x} {size_y}
+        Epsilon: epsilon.txt
+        Sigma: sigma.txt
+        BoundaryCond: ABC
+        Output: Intensity i_big {i_big_out_first_x} {i_big_out_last_x} {i_big_step} {i_big_out_first_y} {i_big_out_last_y} {i_big_step} {start_time} {end_time} {step_time}
+        Output: Intensity i_small {i_small_out_first_x} {i_small_out_last_x} {i_small_step} {i_small_out_first_y} {i_small_out_last_y} {i_small_step} {start_time} {end_time} {step_time}
+        Source: Harmonic 1 {lam_px} {x_source} {y_source}
+        Run: {num}
+    '''.format(
+        type=sim_type,
+        size_x=size_x,
+        size_y=size_y,
+        num=num,
+        lam_px=lam_px,
+        x_source=x_source,
+        y_source=y_source,
+        i_big_out_first_x=i_big_out_first_x,
+        i_big_out_last_x=i_big_out_last_x,
+        i_big_step=i_big_step,
+        i_big_out_first_y=i_big_out_first_y,
+        i_big_out_last_y=i_big_out_last_y,
+        start_time=start_time,
+        end_time=end_time,
+        step_time=step_time,
+        i_small_out_first_x=i_small_out_first_x,
+        i_small_out_last_x=i_small_out_last_x,
+        i_small_step=i_small_step,
+        i_small_out_first_y=i_small_out_first_y,
+        i_small_out_last_y=i_small_out_last_y,
+    )
+
+    return conf
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -52,10 +105,16 @@ if __name__ == "__main__":
     parser.add_argument("--sig_shell", help="Sigma of waveguide shell")
     parser.add_argument("--d_lam", help="Waveguide diameter in lambda")
     parser.add_argument("--alpha", help="Cone angle in degrees")
+    parser.add_argument("--num", help="Number of iterations")
+    parser.add_argument("--type", help="Simulation type (TE|TM)")
     args = parser.parse_args()
     lam_px = int(args.lam_px)
+    num = int(args.num)
     n_core = float(args.n_core)
     sig_shell = float(args.sig_shell)
     d_lam = float(args.d_lam)
     alpha = float(args.alpha) / 180.0 * math.pi
-    write(lam_px, n_core, sig_shell, d_lam, alpha)
+    sim_type = args.type
+    write(lam_px, n_core, sig_shell, d_lam, alpha, num, sim_type)
+
+# python 3 main.py --lam_px=100 --n_core=3 --sig_shell --d_lam=0.3 --alpha=180 --num=20000 --type=TM

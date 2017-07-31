@@ -1,15 +1,17 @@
 import tarfile, sys
-from PIL import Image
+import scipy.misc
+import numpy as np
 
 
-def output_png(lines):
-    # list_of_px = []
-    print(lines.decode("ascii"))
-    # for line in lines.decode("utf-8"):
-    #     print(line)
-    # im = Image.new('L', (size_x, size_y))
-    # im.putdata(list_of_px)
-    # im.save(filename, 'PNG')
+def output_png(lines, size_x, size_y, filename, step, max):
+    img = np.zeros((int(size_y / step), int(size_x / step)), dtype=np.uint8)
+    for line in lines.decode("utf-8").split("\n"):
+        splited = line.split(" ")
+        if len(splited) != 3:
+            print(splited)
+            continue
+        img[int(int(splited[1]) / step)][int(int(splited[0]) / step)] = int(float(splited[2]) / max * 255)
+    scipy.misc.imsave(filename, img)
 
 
 def read_tarinfo(fname):
@@ -24,7 +26,7 @@ def convert_to_png(file, tar_info):
 
 if __name__ == '__main__':
     tar_info, file = read_tarinfo(sys.argv[1])
-    content = convert_to_png(file, tar_info[17])
-    output_png(content)
+    content = convert_to_png(file, tar_info[179])
+    output_png(content, 4200, 1930, "test.png", 5, 0.01)
 
 

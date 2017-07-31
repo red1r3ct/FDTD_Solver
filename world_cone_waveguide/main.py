@@ -36,11 +36,11 @@ def write_sig(x_0, y_0, length, d, d_shell, size_x, size_y, sig_shell):
 
 
 def write(lam_px, n_core, sig_shell, d_over_lam, alpha, num, sim_type):
-    length = int(15 * lam_px)
+    length = int(10 * lam_px)
     d_shell = int(d_over_lam * lam_px + 8 * lam_px)
     size_x = int(26 * lam_px + length)
     size_y = int(10 * lam_px + d_shell)
-    x_0 = int(11 * lam_px)
+    x_0 = int(10 * lam_px)
     y_0 = int(size_y / 2)
     write_eps(x_0, y_0, length, d_over_lam * lam_px, alpha, size_x, size_y, n_core)
     write_sig(x_0, y_0, length, d_over_lam * lam_px, d_shell, size_x, size_y, sig_shell)

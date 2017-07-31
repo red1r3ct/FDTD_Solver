@@ -45,7 +45,7 @@ def write(lam_px, n_core, sig_shell, d_over_lam, alpha, num, sim_type):
     y_0 = int(size_y / 2)
     base_path = './cone_v1_d={d_over_lam}_a={alpha_deg}_lam={lam_px}_n={n_core}_sig={sig_shell}'.format(
         d_over_lam=d_over_lam,
-        alpha_deg=( alpha * 180 / math.pi ),
+        alpha_deg=int(( alpha * 180 / math.pi )),
         lam_px=lam_px,
         n_core=n_core,
         sig_shell=sig_shell

@@ -39,7 +39,7 @@ void IntensityOutputRoutineTM::printFromGPU() {
 	for(int i = 0; i < intensityGPU.getSize(); i++) {
 		int xCoord = i/sizeY;
 		int yCoord = i%sizeY;
-		file << firstX+resolutionX*xCoord << firstY+resolutionY*yCoord << intensityGPU[i]/period;
+		file << firstX+resolutionX*xCoord << " " << firstY+resolutionY*yCoord << " " <<intensityGPU[i]/period << "\n";
 	}
 	file.close();
 }

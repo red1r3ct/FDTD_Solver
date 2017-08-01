@@ -71,7 +71,7 @@ def write_conf(sim_type, x_source, y_source, lam_px, size_x, size_y, num, base_p
 
     start_time = 0
     end_time = num
-    step_time = int(lam_px * math.sqrt(2))
+    step_time = int(lam_px * math.sqrt(2) * 2)
 
     i_small_out_first_x = 0
     i_small_out_last_x = size_x

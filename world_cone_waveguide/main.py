@@ -43,7 +43,7 @@ def write(lam_px, n_core, sig_shell, d_over_lam, alpha, num, sim_type):
     if alpha <= math.pi * 0.99:
         length = int(30 * lam_px + d_over_lam / 2 * math.tan(alpha / 2))
     d_shell = int(d_over_lam * lam_px + 2 * lam_px)
-    size_x = int(30 * lam_px + length)
+    size_x = int(35 * lam_px + length)
     size_y = int(10 * lam_px + d_shell)
     x_0 = int(10 * lam_px)
     y_0 = int(size_y / 2)

@@ -132,4 +132,4 @@ if __name__ == "__main__":
     sim_type = args.type
     write(lam_px, n_core, sig_shell, d_lam, alpha, num, sim_type)
 
-# python 3 main.py --lam_px=100 --n_core=3 --sig_shell=5 --d_lam=0.3 --alpha=180 --num=20000 --type=TM
+# python3 main.py --lam_px=100 --n_core=3 --sig_shell=5 --d_lam=0.3 --alpha=180 --num=20000 --type=TM

@@ -10,7 +10,7 @@ def is_inside_cone(x, y, d, alpha):
     if alpha >= 0.99 * math.pi:
         return False
     k1 = math.tan(0.5 * (math.pi - alpha))
-    h = 0.5 * d * math.tan(alpha / 2)
+    h = 0.5 * d / math.tan(alpha / 2)
     k2 = math.tan(0.5 * (math.pi + alpha))
 
     return (k2 * y + h) >= x <= (k1 * y + h) and x >= 0

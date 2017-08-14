@@ -1,4 +1,4 @@
-import tarfile, sys
+import tarfile, sys, os
 import scipy.misc
 import numpy as np
 
@@ -19,14 +19,21 @@ def read_tarinfo(fname):
     return list(tar.getmembers()), tar
 
 
-def convert_to_png(file, tar_info):
+def read(file, tar_info):
     f = file.extractfile(tar_info)
+    if f is None:
+        return None, True
     content = f.read()
-    return content
+    return content, False
 
 if __name__ == '__main__':
     tar_info, file = read_tarinfo(sys.argv[1])
-    content = convert_to_png(file, tar_info[179])
-    output_png(content, 4200, 1930, "test.png", 5, 0.01)
-
-
+    dir_name = sys.argv[1].replace(".tar.gz", "")
+    if not os.path.exists(dir_name):
+        os.makedirs(dir_name)
+    for tf in tar_info:
+        print("Processing {}".format(tf))
+        content, isErr = read(file, tf)
+        if isErr:
+            continue
+        output_png(content, 20000, 10000, tf.name.replace(".txt", ".png"), 5, 0.02)

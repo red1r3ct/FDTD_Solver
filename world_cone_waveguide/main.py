@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from .helpers.waveguide import check_point as check_point_core
 from .helpers.waveguide_shell import check_point as check_point_shell
+from .helpers.dielectric_wall import check_point as check_point_dielectric_wall
 from .helpers.output import output_array_to_file, output_sig_eps_png
 
 import argparse
@@ -30,6 +31,8 @@ def write_sig(x_0, y_0, length, d, d_shell, size_x, size_y, sig_shell, base_path
         print('Processing [{}/{}]'.format(y, size_y - 1), end="\r")
         for x in range(size_x):
             if check_point_shell(x - x_0, y - y_0, d, d_shell, length):
+                sig.append(sig_shell)
+            elif check_point_dielectric_wall(x - x_0, y - y_0, d_shell, 400):
                 sig.append(sig_shell)
             else:
                 sig.append(0)

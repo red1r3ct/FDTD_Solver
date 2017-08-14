@@ -39,11 +39,11 @@ def write_sig(x_0, y_0, length, d, d_shell, size_x, size_y, sig_shell, base_path
 
 
 def write(lam_px, n_core, sig_shell, d_over_lam, alpha, num, sim_type):
-    length = int(30 * lam_px)
+    length = int(20 * lam_px)
     if alpha <= math.pi * 0.99:
-        length = int(30 * lam_px + d_over_lam / 2 * math.tan(alpha / 2))
+        length = int(20 * lam_px + d_over_lam / 2 * math.tan(alpha / 2))
     d_shell = int(d_over_lam * lam_px + 2 * lam_px)
-    size_x = int(30 * lam_px + length)
+    size_x = int(20 * lam_px + length)
     size_y = int(10 * lam_px + d_shell)
     x_0 = int(10 * lam_px)
     y_0 = int(size_y / 2)
@@ -57,10 +57,11 @@ def write(lam_px, n_core, sig_shell, d_over_lam, alpha, num, sim_type):
     alpha = float(alpha) / 180.0 * math.pi
     if not os.path.exists(base_path):
         os.makedirs(base_path)
-    eps  = write_eps(x_0, y_0, length, d_over_lam * lam_px, alpha, size_x, size_y, n_core, base_path)
+    eps = write_eps(x_0, y_0, length, d_over_lam * lam_px, alpha, size_x, size_y, n_core, base_path)
     sig = write_sig(x_0, y_0, length, d_over_lam * lam_px, d_shell, size_x, size_y, sig_shell, base_path)
     write_conf(sim_type, x_0 - 10 * lam_px, y_0, lam_px, size_x, size_y, num, base_path)
     output_sig_eps_png(eps, sig, base_path + "/world", sig_shell, size_x, size_y)
+
 
 def write_conf(sim_type, x_source, y_source, lam_px, size_x, size_y, num, base_path):
     i_big_out_first_x = 0
@@ -73,7 +74,7 @@ def write_conf(sim_type, x_source, y_source, lam_px, size_x, size_y, num, base_p
     end_time = num
     step_time = int(lam_px * math.sqrt(2) * 2)
 
-    i_small_out_first_x = 0
+    i_small_out_first_x = int(30 * lam_px)
     i_small_out_last_x = size_x
     i_small_step = 1
     i_small_out_first_y = 0
@@ -85,6 +86,7 @@ Epsilon: epsilon.txt
 Sigma: sigma.txt
 BoundaryCond: ABC
 Output: Intensity i_big {i_big_out_first_x} {i_big_out_last_x} {i_big_step} {i_big_out_first_y} {i_big_out_last_y} {i_big_step} {start_time} {end_time} {step_time} 0
+Output: Intensity i_small {i_small_out_first_x} {i_small_out_last_x} {i_small_step} {i_small_out_first_y} {i_small_out_last_y} {i_small_step} {start_time} {end_time} {step_time} 0
 Source: Harmonic 1 {lam_px} {x_source} {y_source}
 Run: {num}
 '''.format(

@@ -1,4 +1,6 @@
-import tarfile, sys, os
+import tarfile
+import sys
+import os
 import scipy.misc
 import numpy as np
 
@@ -25,6 +27,7 @@ def read(file, tar_info):
         return None, True
     content = f.read()
     return content, False
+
 
 if __name__ == '__main__':
     tar_info, file = read_tarinfo(sys.argv[1])

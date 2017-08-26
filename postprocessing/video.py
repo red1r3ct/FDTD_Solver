@@ -14,6 +14,4 @@ class Video:
         return False
 
     def write(name):
-        video_writer_codec = cv2.VideoWriter_fourcc(*'MJPG')
-        video_writer = cv2.VideoWriter(name, self.video_writer_codec, 20.0, (size_x,size_y))
-        
+        print("No writer yet")

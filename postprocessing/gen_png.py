@@ -5,7 +5,7 @@ import scipy.misc
 import numpy as np
 
 
-def output_png(lines, size_x, size_y, filename, step, max):
+def output_png(filename, lines, size_x, size_y, step, start_x, end_x, start_y, end_y, max):
     img = np.zeros((int(size_y / step), int(size_x / step)), dtype=np.uint8)
     for line in lines.decode("utf-8").split("\n"):
         splited = line.split(" ")
@@ -32,11 +32,13 @@ def read(file, tar_info):
 if __name__ == '__main__':
     tar_info, file = read_tarinfo(sys.argv[1])
     dir_name = sys.argv[1].replace(".tar.gz", "")
+    # TODO read size_x size_y ...
     if not os.path.exists(dir_name):
         os.makedirs(dir_name)
     for tf in tar_info:
+        # TODO check file pattern
         print("Processing {}".format(tf))
         content, isErr = read(file, tf)
         if isErr:
             continue
-        output_png(content, 20000, 10000, tf.name.replace(".txt", ".png"), 5, 0.02)
+        output_png(tf.name.replace(".txt", ".png"), content)

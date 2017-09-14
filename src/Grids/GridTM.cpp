@@ -64,7 +64,7 @@ void GridTM::readExcluded(const std::string& fileName) {
 			excludedHost(xCoord, yCoord) = excludedValue;
 		}
 	}
-	epsilon.CPUtoGPU();
+	excluded.CPUtoGPU();
 	file.close();
 }
 

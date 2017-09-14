@@ -16,19 +16,20 @@ typedef thrust::device_ptr<float> d_ptr;
 class HxHyUpdaterTM {
 public:
 	__host__ __device__
-	HxHyUpdaterTM(d_ptr _Ez, d_ptr _Hx, d_ptr _Hy, d_ptr _epsilon, int _sizeX, int _sizeY, float _S ) : Ez(_Ez), Hx(_Hx), Hy(_Hy),
-			epsilon(_epsilon), sizeX(_sizeX), sizeY(_sizeY), S(_S) {};
+	HxHyUpdaterTM(d_ptr _Ez, d_ptr _Hx, d_ptr _Hy, d_ptr _epsilon, d_ptr _excluded, int _sizeX, int _sizeY, float _S ) : Ez(_Ez), Hx(_Hx), Hy(_Hy),
+			epsilon(_epsilon), excluded(_excluded), sizeX(_sizeX), sizeY(_sizeY), S(_S) {};
 	__host__ __device__
 	~HxHyUpdaterTM() {};
 
 	__host__ __device__
 	HxHyUpdaterTM(): sizeX(0), sizeY(0), S(0) {}
 
-	void setParams(d_ptr _Ez, d_ptr _Hx, d_ptr _Hy, d_ptr _epsilon, int _sizeX, int _sizeY, float _S ) {
+	void setParams(d_ptr _Ez, d_ptr _Hx, d_ptr _Hy, d_ptr _epsilon, d_ptr _excluded, int _sizeX, int _sizeY, float _S ) {
 		Ez=_Ez;
 		Hx=_Hx;
 		Hy=_Hy;
 		epsilon=_epsilon;
+		excluded=_excluded;
 		sizeX=_sizeX;
 		sizeY=_sizeY;
 		S=_S;
@@ -37,7 +38,7 @@ public:
 	__host__ __device__
 	void operator() (const int indx);
 
-	d_ptr Ez, Hx, Hy, epsilon;
+	d_ptr Ez, Hx, Hy, epsilon, excluded;
 	int sizeX, sizeY;
 	float S;
 };

@@ -39,6 +39,9 @@ __host__ __device__
 void HxHyUpdaterTM::operator() (const int indx) {
 	// m и n - индексы в полноценных массивах
 	// sizeY - размер полноценнго массива
+	if (excluded(m, n) != 0) {
+		return;
+	}
 	int m = indx/(sizeY);
 	int n = indx%(sizeY);
 	float Che = S / 377.0;

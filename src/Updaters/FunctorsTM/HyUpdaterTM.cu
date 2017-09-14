@@ -21,6 +21,9 @@ __host__ __device__
 void HyUpdaterTM::operator() (const int indx) {
 	// m и n - индексы в полноценных массивах
 	// sizeY - размер полноценнго массива
+	if (excluded(m, n) != 0) {
+		return;
+	}
 	int m = indx/(sizeY);
 	int n = indx%(sizeY);
 	float Chye = S / 377.0;

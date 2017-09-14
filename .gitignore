@@ -26,3 +26,5 @@ Makefile
 /server/secret.env
 
 .idea
+
+/**/__pycache__

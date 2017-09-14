@@ -77,6 +77,7 @@ private:
 	inline void addBoundaryCondTM();
 	inline void addRoutineTM();
 	void readEpsilonTM();
+	void readExcludedTM();
 	void readSigmaTM();
 	void createGridTE();
 	inline void addSourceTE();

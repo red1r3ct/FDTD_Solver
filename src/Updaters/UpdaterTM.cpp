@@ -25,6 +25,7 @@ void UpdaterTM::addGrid(GridTM* _grid) {
 			   	   	   	grid->Hy.getDevicePtr(),
 			   	   	   	grid->epsilon.getDevicePtr(),
 			   	   	   	grid->sigma.getDevicePtr(),
+			   	   	    grid->excluded.getDevicePtr(),
 			   	   	   	grid->sizeX,
 			   	   	   	grid->sizeY,
 			   	   	   	1/sqrt(2));
@@ -32,6 +33,7 @@ void UpdaterTM::addGrid(GridTM* _grid) {
 					   	  grid->Hx.getDevicePtr(),
 					   	  grid->Hy.getDevicePtr(),
 					   	  grid->epsilon.getDevicePtr(),
+					   	  grid->excluded.getDevicePtr(),
 					   	  grid->sizeX,
 					   	  grid->sizeY,
 					   	  1/sqrt(2));

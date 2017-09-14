@@ -98,6 +98,9 @@ void Parser::runTM() {
 		if (command == "Sigma:") {
 			readSigmaTM();
 		}
+		if (command == "Excluded:") {
+			readExcludedTM();
+		}
 		if (command == "Source:") {
 			addSourceTM();
 		}
@@ -197,6 +200,12 @@ void Parser::readSigmaTM() {
 	std::string sigmaFileName = "";
 	fileStream >> sigmaFileName;
 	gridTM->readSigma(sigmaFileName);
+}
+
+void Parser::readExcludedTM() {
+	std::string excludedFileName = "";
+	fileStream >> excludedFileName;
+	gridTM->readExcluded(excludedFileName);
 }
 
 void Parser::readEpsilonTE() {

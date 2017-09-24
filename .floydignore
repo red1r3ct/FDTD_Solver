@@ -13,4 +13,7 @@ var
 *.swp
 .DS_Store
 .idea
+
 server
+postprocessing
+CMakeFiles

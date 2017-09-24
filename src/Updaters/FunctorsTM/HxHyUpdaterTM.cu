@@ -39,11 +39,11 @@ __host__ __device__
 void HxHyUpdaterTM::operator() (const int indx) {
 	// m и n - индексы в полноценных массивах
 	// sizeY - размер полноценнго массива
+	int m = indx/(sizeY);
+	int n = indx%(sizeY);
 	if (excluded(m, n) != 0) {
 		return;
 	}
-	int m = indx/(sizeY);
-	int n = indx%(sizeY);
 	float Che = S / 377.0;
 	if(m < sizeX-1) {
 		Hy(m, n) = Hy(m, n) + Che * (Ez(m+1, n) - Ez(m,n));

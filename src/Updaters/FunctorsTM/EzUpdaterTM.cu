@@ -31,11 +31,11 @@ __host__ __device__
 void EzUpdaterTM::operator() (const int indx) {
 	// m и n - индексы в полноценных массивах
 	// sizeY - размер полноценнго массива
+	int m = indx/(sizeY);
+	int n = indx%(sizeY);
 	if (excluded(m, n) != 0) {
 		return;
 	}
-	int m = indx/(sizeY);
-	int n = indx%(sizeY);
 	float loss = sigma(m, n)/(2*epsilon(m, n));
 	float Cezh = S * 377.0 / epsilon(m,n) / (1+loss);
 	float Ceze = (1-loss)/(1+loss);

@@ -12,7 +12,7 @@
 #include <vector>
 
 #define epsilonHost(M, N) epsilon[(M) * (sizeY) + (N)]
-#define excludedHost(M, N) sigma[(M) * (sizeY) + (N)]
+#define excludedHost(M, N) excluded[(M) * (sizeY) + (N)]
 #define sigmaHost(M, N) sigma[(M) * (sizeY) + (N)]
 
 GridTM::GridTM(std::size_t _sizeX, std::size_t _sizeY, float _S) :  sizeX(_sizeX), sizeY(_sizeY), Hx(sizeX*(sizeY-1), 0),

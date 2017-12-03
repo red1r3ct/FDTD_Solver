@@ -114,34 +114,42 @@ void Parser::runTM() {
 			fileStream >> num;
 		}
 	}
+	std::cout << "Finish parsing config" << std::endl;
 	for (int i = 0; i < hSources.size(); i++){
 		updaterTM.addSource(hSources[i]);
 	}
+	std::cout << "Finish attaching hSources" << std::endl;
 	for (int i = 0; i < EzOut.size(); i++){
 		updaterTM.addRoutine(EzOut[i]);
 	}
-	for (int i = 0; i < IntenOut.size(); i++){
-		updaterTM.addRoutine(IntenOut[i]);
-	}
+	std::cout << "Finish attaching EzOut" << std::endl;
 	for (int i = 0; i < HxOut.size(); i++){
 		updaterTM.addRoutine(HxOut[i]);
 	}
+	std::cout << "Finish attaching HxOut" << std::endl;
 	for (int i = 0; i < HyOut.size(); i++){
 		updaterTM.addRoutine(HyOut[i]);
 	}
+	std::cout << "Finish attaching HyOut" << std::endl;
 	for (int i = 0; i < IntenOut.size(); i++){
 		updaterTM.addRoutine(IntenOut[i]);
 	}
+	std::cout << "Finish attaching IntenOut" << std::endl;
 	for (int i = 0; i < ABCTMs.size(); i++){
 		updaterTM.addBoundaryCond(ABCTMs[i]);
 	}
+	std::cout << "Finish attaching ABCTMs" << std::endl;
 	for (int i = 0; i < periodicsTM.size(); i++){
 		updaterTM.addBoundaryCond(periodicsTM[i]);
 	}
+	std::cout << "Finish attaching periodicsTM" << std::endl;
 	if (tfsfTM != NULL) {
 		updaterTM.addTFSF(tfsfTM);
+		std::cout << "TFSF added" << std::endl;
 	}
+	std::cout << "Starting simulation" << std::endl;
 	updaterTM.run(num);
+	std::cout << "Simulation finished" << std::endl;
 }
 
 void Parser::runTE() {

@@ -49,7 +49,7 @@ print('''
 '''.format(
   delta=delta,
   radius_sph=radius_sph,
-  d_sph=d_sph,
+  d_sph=d_sph + d_sph - 5 * lam_px,
   x_pos_sph=x_pos_sph,
   y_pos_sph=y_pos_sph,
 ))

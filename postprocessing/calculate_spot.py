@@ -76,6 +76,7 @@ def output_spot(name, content, dir_name, th):
     spot_x = 0
     spot_y = 0
     spot_size = 1000
+    max_radius = 500
     spots = []
     for column_idx in range(data.shape[1]):
         column = data[:, column_idx]
@@ -85,7 +86,7 @@ def output_spot(name, content, dir_name, th):
         spot_size = len(column)
         max_pos = np.argmax(column)
         total_energy = np.sum(column)
-        for radius in range(10, round(len(column)/2 - 1)):
+        for radius in range(10, max_radius):
             spot = column[max_pos - radius : max_pos + radius]
             energy_inside_spot = np.sum(spot)
             if energy_inside_spot/total_energy > th:
@@ -93,10 +94,11 @@ def output_spot(name, content, dir_name, th):
                 break
         spots.append(spot_size)
     min_spot_idx = np.argmin(spots)
-    min_spot_column = data[:, min_spot_idx]
+    max_pos = int(len(data[:, min_spot_idx])/2)
+    min_spot_column = data[max_pos - max_radius : max_pos + max_radius, min_spot_idx]
     plt.gcf().clear()
-    plt.plot(range(size_y+1), min_spot_column)
-    plt.text(0, 2, "X={x} Spot={spot}".format(
+    plt.plot(range(max_pos - max_radius, max_pos + max_radius), min_spot_column)
+    plt.text(max_pos - max_radius, 2, "X={x} Spot={spot}".format(
         x=min_spot_idx,
         spot=spots[min_spot_idx]
     ), fontsize=12)

@@ -32,7 +32,7 @@ def should_parse_file(tar_file, t_start, t_end):
         return False
 
 
-def output_spot(name, content, dir_name, th):
+def output_spot(name, content, dir_name, th, ext):
     splited = content.decode("utf-8").split("\n")
     # Get area size
     first_x = float('inf')
@@ -102,13 +102,14 @@ def output_spot(name, content, dir_name, th):
         x=min_spot_idx,
         spot=spots[min_spot_idx]
     ), fontsize=12)
-    plt.savefig(name.replace(".png", "_x={x}_spot={spot}.png".format(
+    plt.savefig(name.replace(".png", "_x={x}_spot={spot}.{ext}".format(
         x=first_x + min_spot_idx, 
-        spot=spots[min_spot_idx]
+        spot=spots[min_spot_idx],
+        ext=ext
     )))
 
 
-def main(tar_name, t_start, t_end, output_name, th):
+def main(tar_name, t_start, t_end, output_name, th, ext):
     tar_info, file = read_tarinfo(tar_name)
     dir_name = "spots_{}".format(tar_name.replace(".tar.gz", ""))
     print(tar_info)
@@ -125,7 +126,7 @@ def main(tar_name, t_start, t_end, output_name, th):
             if isErr:
                 print("Error during file processing: {}".format(tf.name))
                 continue
-            output_spot("spots_" + tf.name.replace(".txt", ".png"), content, dir_name, th)
+            output_spot("spots_" + tf.name.replace(".txt", ".png"), content, dir_name, th, ext)
         except BaseException:
             traceback.print_exc()
             continue
@@ -137,6 +138,7 @@ if __name__ == '__main__':
     parser.add_argument("--tar_file", help="Path to archive")
     parser.add_argument("--t_start", help="Time from to start read files")
     parser.add_argument("--t_end", help="Time until dumps should ba analized")
+    parser.add_argument("--ext", "output images extensions typically png or pdf")
     args = parser.parse_args()
 
     out_name = str(args.out_name)
@@ -144,6 +146,7 @@ if __name__ == '__main__':
     t_start = int(args.t_start)
     t_end = int(args.t_end)
     th = float(args.th)
+    ext = str(args.ext)
 
     print("Start processing spots: tar_file={tar_file}\n out_name={out_name}\n t_start={t_start}\n t_end={t_end}\n".format(
         tar_file=tar_file,
@@ -158,4 +161,5 @@ if __name__ == '__main__':
         t_start=t_start,
         t_end=t_end,
         th=th
+        ext=ext
     )
